@@ -828,7 +828,7 @@
     <script type="module">
         // Environment Variable loaded from .env
         const envVal = "%VITE_API_BASE_URL%";
-        const API = !envVal.startsWith('%') ? envVal : '';
+        const API = (!envVal.startsWith('%') ? envVal : null) || window.API_BASE_URL || '';
         let ADMIN_KEY = '';
         let allContacts = [];
         let allPartners = [];

@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const host = window.location.hostname;
     const isLive = host === 'ai-mall.in' || host.includes('run.app');
     
-    // Explicit env variable from .env
-    window.API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // Explicit env variable from .env, falling back to window.API_BASE_URL injected by container config.js
+    window.API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.API_BASE_URL || '';
 
     if (!window.API_BASE_URL) {
-        console.error("VITE_API_BASE_URL is not defined in .env. API calls will fail.");
+        console.error("VITE_API_BASE_URL is not defined. API calls will fail.");
     }
 
     // ── Global Interface Controls ──

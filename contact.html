@@ -325,7 +325,7 @@
         <script>
             // Environment Variable loaded from .env
             const envVal = "%VITE_API_BASE_URL%";
-            const API_URL = !envVal.startsWith('%') ? envVal : '';
+            const API_URL = (!envVal.startsWith('%') ? envVal : null) || window.API_BASE_URL || '';
 
             function setFocus(el) { el.parentElement.classList.add('focused'); }
             function removeFocus(el) { el.parentElement.classList.remove('focused'); checkContent(el); }

@@ -21,7 +21,7 @@ RUN echo 'server { \
     } \
 }' > /etc/nginx/conf.d/default.conf
 
-# Cloud Run defaults to PORT 8080
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+# Dynamic runtime configuration: inject container environment VITE_API_BASE_URL into config.js before Nginx starts
+CMD ["/bin/sh", "-c", "echo \"window.API_BASE_URL = '$VITE_API_BASE_URL';\" > /usr/share/nginx/html/config.js && exec nginx -g 'daemon off;'"]

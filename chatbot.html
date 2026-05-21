@@ -7,6 +7,7 @@
 <meta name="description" content="Chat with AISA, the AI-MALL™ RAG-powered AI assistant. Get instant answers from your knowledge base."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<script src="/config.js"></script>
 <style>
 :root{
   --bg:#07091a;--bg2:#0d1128;
@@ -246,7 +247,7 @@ header{
 // ═══════════════════════════════════════════════════════
 // Environment Variable loaded from .env
 const envVal = "%VITE_API_BASE_URL%";
-const API = !envVal.startsWith('%') ? envVal : '';
+const API = (!envVal.startsWith('%') ? envVal : null) || window.API_BASE_URL || '';
 const sessionId = 'sess_' + Math.random().toString(36).slice(2,10);
 let chatHistory = [];
 let isStreaming = false;
