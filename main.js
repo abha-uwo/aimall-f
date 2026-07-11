@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Neural Gateway Configuration (Smart Domain Detection) ──
     const host = window.location.hostname;
     const isLive = host === 'ai-mall.in' || host.includes('run.app');
-    
+
     // Explicit env variable from .env, falling back to window.API_BASE_URL injected by container config.js
     window.API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.API_BASE_URL || '';
 
@@ -95,12 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (loaderOverlay && !hasOnboarded) {
         body.classList.add('onboarding-active');
+        if (typeof lenis !== 'undefined') lenis.stop();
+
+        // Prevent background scrolling via wheel/touch outside the card
+        const preventOutside = (e) => {
+            if (welcomeCard && !welcomeCard.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        };
+        loaderOverlay.addEventListener('wheel', preventOutside, { passive: false });
+        loaderOverlay.addEventListener('touchmove', preventOutside, { passive: false });
 
         const header = document.getElementById('header');
         if (header) {
-            // Keep header visible so branding and menu are accessible
-            header.style.opacity = '1';
-            header.style.pointerEvents = 'auto';
+            // Hide header during onboarding (intro video & welcome card)
+            // It will be revealed in completeOnboarding() when main page appears
+            header.style.opacity = '0';
+            header.style.visibility = 'hidden';
+            header.style.pointerEvents = 'none';
         }
 
         // Hide chatbot while onboarding
@@ -203,6 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
             chatAssistant.style.opacity = '1';
             chatAssistant.style.visibility = 'visible';
         }
+        // Ensure header is visible on main page for returning users
+        const header = document.getElementById('header');
+        if (header) {
+            header.style.opacity = '1';
+            header.style.visibility = 'visible';
+            header.style.pointerEvents = 'auto';
+        }
         startHeroAnimations();
     }
 
@@ -224,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             body.classList.remove('loading');
             body.classList.remove('onboarding-active');
+            if (typeof lenis !== 'undefined') lenis.start();
 
             setTimeout(() => {
                 if (loaderOverlay) loaderOverlay.style.display = 'none';
@@ -239,11 +260,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Reveal Header
+                // Reveal Header on main landing page
                 const header = document.getElementById('header');
                 if (header) {
-                    header.style.transition = 'opacity 1.2s ease';
+                    header.style.transition = 'opacity 1.2s ease, visibility 1.2s ease';
                     header.style.opacity = '1';
+                    header.style.visibility = 'visible';
                     header.style.pointerEvents = 'auto';
                 }
             }, 800);
@@ -395,22 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. SECTION-SPECIFIC ANIMATIONS
     // ═══════════════════════════════════════════
 
-    // ── Parallax on all section background images ──
-    gsap.utils.toArray('.scroll-section').forEach(section => {
-        const img = section.querySelector('.parallax-img');
-        if (img) {
-            gsap.to(img, {
-                yPercent: 18,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                }
-            });
-        }
-    });
+    // Parallax on section background images removed — caused white gap between sections during scroll
 
     // ── Pillar Cards (Home) ──
     const pillars = document.querySelector('.pillars-grid');
@@ -651,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollToItem = (index) => {
             if (!items[index]) return;
             const target = items[index];
-            
+
             // Calculate target scroll to bring the item's center to the viewport center
             const trackPadding = parseFloat(getComputedStyle(hstripTrack).paddingLeft) || 0;
             const targetScroll = target.offsetLeft - (hstripOuter.clientWidth / 2) + (target.offsetWidth / 2);
@@ -914,14 +921,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════════════════════════════════
     // 8. STICKY HEADER STATE
     // ═══════════════════════════════════════════
-    const header = document.getElementById('header');
-    if (header) {
-        ScrollTrigger.create({
-            start: 'top -80',
-            onEnter: () => header.classList.add('scrolled'),
-            onLeaveBack: () => header.classList.remove('scrolled'),
-        });
-    }
+    // const header = document.getElementById('header');
+    // if (header) {
+    //     ScrollTrigger.create({
+    //         start: 'top -80',
+    //         onEnter: () => header.classList.add('scrolled'),
+    //         onLeaveBack: () => header.classList.remove('scrolled'),
+    //     });
+    // }
 
     // ═══════════════════════════════════════════
     // 9. PREMIUM CHATBOT LOGIC (AISA™)
@@ -1127,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mv = document.getElementById('chat-messages');
         const ci = document.getElementById('chat-main-input');
         const n = localStorage.getItem('chat_user') || "User";
-        
+
         if (rv) rv.style.display = 'none';
         if (mv) {
             mv.style.display = 'flex';
@@ -1541,7 +1548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         let vIsMuted = false;
-        window.toggleVisionVolume = function() {
+        window.toggleVisionVolume = function () {
             vIsMuted = !vIsMuted;
             const btn = document.getElementById('vision-volume-btn');
             if (btn) btn.classList.toggle('active', vIsMuted);
@@ -1729,15 +1736,15 @@ document.addEventListener('DOMContentLoaded', () => {
         updateOffsets();
     }
 
-    function goNext() { 
-        goTo(currentIndex + 1); 
+    function goNext() {
+        goTo(currentIndex + 1);
         if (modal && modal.classList.contains('open')) {
             modalIndex = currentIndex;
             updateModalContent(modalIndex);
         }
     }
-    function goPrev() { 
-        goTo(currentIndex - 1); 
+    function goPrev() {
+        goTo(currentIndex - 1);
         if (modal && modal.classList.contains('open')) {
             modalIndex = currentIndex;
             updateModalContent(modalIndex);
@@ -1777,11 +1784,11 @@ document.addEventListener('DOMContentLoaded', () => {
         isAutoPlaying = true;
         goNext(); // Immediate transition
         autoplayTimer = setInterval(goNext, 2800);
-        
+
         // Handle icons in main section
         if (playIcon) playIcon.style.display = 'none';
         if (pauseIcon) pauseIcon.style.display = '';
-        
+
         // Handle icons in modal if open
         const mpIcon = document.getElementById('aseries-modal-play-icon');
         const msIcon = document.getElementById('aseries-modal-pause-icon');
@@ -1794,11 +1801,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopAutoplay() {
         clearInterval(autoplayTimer);
         isAutoPlaying = false;
-        
+
         // Handle icons in main section
         if (playIcon) playIcon.style.display = '';
         if (pauseIcon) pauseIcon.style.display = 'none';
-        
+
         // Handle icons in modal if open
         const mpIcon = document.getElementById('aseries-modal-play-icon');
         const msIcon = document.getElementById('aseries-modal-pause-icon');
@@ -1832,7 +1839,7 @@ document.addEventListener('DOMContentLoaded', () => {
             b.querySelector('svg path') && (b.querySelector('svg path').style.fill = isLiked ? '#f43f5e' : 'none');
         });
     };
-    window.toggleAseriesVolume = function() {
+    window.toggleAseriesVolume = function () {
         isMuted = !isMuted;
         const btns = document.querySelectorAll('#aseries-volume-btn, #aseries-modal-volume-btn');
         btns.forEach(b => b.classList.toggle('active', isMuted));

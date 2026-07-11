@@ -16,7 +16,26 @@ export default defineConfig({
         admin: resolve(__dirname, 'admin.html'),
         'rag-admin': resolve(__dirname, 'rag-admin.html'),
         chatbot: resolve(__dirname, 'chatbot.html'),
+        platform: resolve(__dirname, 'foundation/platform.html'),
+        architecture: resolve(__dirname, 'foundation/architecture.html'),
+        marketplace: resolve(__dirname, 'foundation/marketplace.html'),
       },
     },
   },
+  server: {
+    // Middleware rewrite to serve /foundation/platform from platform.html, etc.
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const cleanUrl = req.url.split('?')[0].split('#')[0];
+        if (cleanUrl === '/foundation/platform') {
+          req.url = '/foundation/platform.html';
+        } else if (cleanUrl === '/foundation/architecture') {
+          req.url = '/foundation/architecture.html';
+        } else if (cleanUrl === '/foundation/marketplace') {
+          req.url = '/foundation/marketplace.html';
+        }
+        next();
+      });
+    }
+  }
 });
