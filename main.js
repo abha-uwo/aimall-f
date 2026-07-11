@@ -612,7 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
             isDown = true;
             hstripOuter.classList.add('is-dragging');
             startX = e.pageX - hstripOuter.offsetLeft;
+            lastX = startX;
             scrollLeft = hstripOuter.scrollLeft;
+            vel = 0;
             cancelAnimationFrame(scrollInertia);
         });
         hstripOuter.addEventListener('mouseleave', () => { isDown = false; hstripOuter.classList.remove('is-dragging'); });
@@ -622,6 +624,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const applyInertia = () => {
             if (Math.abs(vel) < 0.1) return;
             hstripOuter.scrollLeft += vel;
+            if (clampScroll()) {
+                vel = 0;
+                return;
+            }
             vel *= 0.95; // Inertia damping
             scrollInertia = requestAnimationFrame(applyInertia);
         };
@@ -630,7 +636,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let touchStartX = 0;
         hstripOuter.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
+            lastX = touchStartX;
             scrollLeft = hstripOuter.scrollLeft;
+            vel = 0;
             cancelAnimationFrame(scrollInertia);
         }, { passive: true });
 
@@ -644,24 +652,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const endX = e.changedTouches[0].clientX;
             const dx = endX - touchStartX;
             if (Math.abs(dx) > 30) {
-                // If swipe is significant, move to next/prev
                 const current = getActiveIndex();
-                if (dx < 0) {
-                    scrollToItem((current + 1) % items.length);
-                } else {
-                    scrollToItem((current - 1 + items.length) % items.length);
+                if (dx < 0 && current < items.length - 1) {
+                    scrollToItem(current + 1);
+                } else if (dx > 0 && current > 0) {
+                    scrollToItem(current - 1);
                 }
             }
         }, { passive: true });
 
-        // Function to smoothly center any item
+        // Compute the exact scroll position required to center a card
+        const getScrollTargetForItem = (target) => {
+            const targetCenter = target.offsetLeft + (target.offsetWidth / 2);
+            const halfViewport = hstripOuter.clientWidth / 2;
+            const maxScroll = hstripOuter.scrollWidth - hstripOuter.clientWidth;
+            const targetScroll = targetCenter - halfViewport;
+            return Math.min(Math.max(targetScroll, 0), maxScroll);
+        };
+
         const scrollToItem = (index) => {
             if (!items[index]) return;
             const target = items[index];
-
-            // Calculate target scroll to bring the item's center to the viewport center
-            const trackPadding = parseFloat(getComputedStyle(hstripTrack).paddingLeft) || 0;
-            const targetScroll = target.offsetLeft - (hstripOuter.clientWidth / 2) + (target.offsetWidth / 2);
+            const targetScroll = getScrollTargetForItem(target);
 
             gsap.to(hstripOuter, {
                 scrollLeft: targetScroll,
@@ -693,16 +705,18 @@ document.addEventListener('DOMContentLoaded', () => {
             hPrev.addEventListener('click', (e) => {
                 e.preventDefault();
                 const current = getActiveIndex();
-                const targetIdx = (current - 1 + items.length) % items.length;
-                scrollToItem(targetIdx);
+                if (current > 0) {
+                    scrollToItem(current - 1);
+                }
             });
         }
         if (hNext) {
             hNext.addEventListener('click', (e) => {
                 e.preventDefault();
                 const current = getActiveIndex();
-                const targetIdx = (current + 1) % items.length;
-                scrollToItem(targetIdx);
+                if (current < items.length - 1) {
+                    scrollToItem(current + 1);
+                }
             });
         }
 
@@ -729,27 +743,25 @@ document.addEventListener('DOMContentLoaded', () => {
             items.forEach((item, i) => {
                 const itemCenter = item.offsetLeft + item.offsetWidth / 2;
                 const distance = itemCenter - viewportCenter;
-                const normalizedDist = Math.max(-2, Math.min(2, distance / (hstripOuter.clientWidth / 1.2)));
+                // Use viewport-based normalization for consistent scaling across sizes
+                const normalizedDist = Math.max(-1, Math.min(1, distance / (hstripOuter.clientWidth / 2)));
 
-                // ARC TRANSFORMS - PRECISION ENGINE
-                const rotateY = normalizedDist * -32;
-                const scale = 1.25 - Math.abs(normalizedDist) * 0.35; // Increased base scale for active card
-                const translateZ = 50 - Math.abs(normalizedDist) * 230; // Closer feel for active card
-                const opacity = 1 - Math.abs(normalizedDist) * 0.45;
-                const blur = 0; // Clearer view as requested
-
+                // Smooth scale between side and center
+                const scale = 1 - Math.abs(normalizedDist) * 0.18; // side cards ~0.82, center ~1.0 (CSS adds is-active scale)
+                const opacity = 1 - Math.abs(normalizedDist) * 0.35;
+                const blur = Math.abs(normalizedDist) * 1.5; // small blur for side cards
+                const translateX = normalizedDist * 12; // subtle horizontal nudge for parallax
 
                 gsap.set(item, {
-                    rotateY: rotateY,
-                    scale: Math.max(0.65, scale),
-                    translateZ: translateZ,
-                    opacity: Math.max(0.3, opacity),
+                    x: translateX,
+                    scale: scale,
+                    opacity: Math.max(0.5, opacity),
                     filter: `blur(${blur}px)`,
-                    zIndex: Math.round(100 - Math.abs(normalizedDist) * 80)
+                    zIndex: Math.round(50 - Math.abs(normalizedDist) * 40)
                 });
 
-                // Detect center card for dots
-                const isActive = Math.abs(distance) < (item.offsetWidth / 2);
+                // Detect center card for dots (use smaller threshold to ensure single active)
+                const isActive = Math.abs(distance) < (item.offsetWidth * 0.52);
                 item.classList.toggle('is-active', isActive);
 
                 if (isActive && dots[i]) {
@@ -762,22 +774,48 @@ document.addEventListener('DOMContentLoaded', () => {
         // Navigation Sync Logic (Handled in the refined block above)
 
 
+        const clampScroll = () => {
+            const maxScroll = Math.max(0, hstripOuter.scrollWidth - hstripOuter.clientWidth);
+            const clampedScroll = Math.min(Math.max(hstripOuter.scrollLeft, 0), maxScroll);
+            const wasClamped = clampedScroll !== hstripOuter.scrollLeft;
+            hstripOuter.scrollLeft = clampedScroll;
+            return wasClamped;
+        };
+
         const updatePadding = () => {
             if (!items.length) return;
-            const sidePadding = (hstripOuter.clientWidth / 2) - (items[0].offsetWidth / 2);
+            const cardWidth = items[0].offsetWidth;
+            const maxScale = 1.25;
+            const maxVisualCardWidth = cardWidth * (maxScale + 0.1);
+            const basePadding = Math.max((hstripOuter.clientWidth - cardWidth) / 2, 0);
+            const scaleMargin = (maxVisualCardWidth - cardWidth) / 2;
+            const rotationMargin = Math.max(cardWidth * 0.14, 30);
+            const sidePadding = Math.max(basePadding + scaleMargin + rotationMargin, 0);
             hstripTrack.style.paddingLeft = `${sidePadding}px`;
             hstripTrack.style.paddingRight = `${sidePadding}px`;
+            clampScroll();
             updateArc();
         };
 
+        // Add wheel support for horizontal scroll (premium feel)
+        hstripOuter.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+                // convert vertical wheel into horizontal
+                e.preventDefault();
+                hstripOuter.scrollLeft += e.deltaY * 1.2;
+            }
+        }, { passive: false });
+
         hstripOuter.addEventListener('scroll', updateArc);
+        // Recalculate padding and visuals on resize and orientation changes
         window.addEventListener('resize', updatePadding);
+        window.addEventListener('orientationchange', () => setTimeout(updatePadding, 300));
         updatePadding();
 
         // Click to Focus / Center Card
         items.forEach(item => {
             item.addEventListener('click', () => {
-                const targetScroll = item.offsetLeft - (hstripOuter.clientWidth / 2) + (item.offsetWidth / 2);
+                const targetScroll = getScrollTargetForItem(item);
                 gsap.to(hstripOuter, {
                     scrollLeft: targetScroll,
                     duration: 0.8,

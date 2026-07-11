@@ -252,12 +252,7 @@ body.about-page #about-hero .cta-group {
 }
 
 .lt-uwo-bg {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-    background: none;
+    display: none;
 }
 
 .lt-uwo-section::before {

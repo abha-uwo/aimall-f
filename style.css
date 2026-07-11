@@ -4551,7 +4551,7 @@ body.modal-active #ai-chat-assistant {
 .mission-bg-base {
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('/mission_hero_bg.png');
+    background: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.28)), url('/image.png');
     background-size: cover;
     background-position: center;
     opacity: 1;
@@ -4843,8 +4843,8 @@ body.modal-active #ai-chat-assistant {
 .hstrip-section {
     position: relative;
     padding: 100px 0;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%);
+    overflow: visible;
+    background: url("/Free%20vector%20Gradient%20geometric%20blue%20technology%20background%20%20%23iblw14hi5u.jpg") center/cover no-repeat;
     perspective: 1400px;
     /* Core for 3D depth */
 }
@@ -4954,49 +4954,100 @@ body.modal-active #ai-chat-assistant {
     cursor: grabbing;
 }
 
-/* Track — horizontal flex row with 3D context */
+/* Track — premium horizontal showcase inspired by Apple/Framer */
 .hstrip-track {
     display: flex;
-    gap: 100px;
+    gap: 5.5vw; /* proportional gap for responsiveness */
     width: max-content;
     align-items: center;
     padding: 0;
-    /* Start from left instead of centering */
-    transform-style: preserve-3d;
+    transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Each Item - Re-scaled for 5-up visibility */
+/* Section subtle background glow */
+.hstrip-section::before {
+    content: '';
+    position: absolute;
+    inset: -30% 0 0 0;
+    height: 60%;
+    background: radial-gradient(40% 30% at 50% 20%, rgba(42,82,190,0.08), transparent 30%), radial-gradient(30% 20% at 10% 70%, rgba(59,130,246,0.04), transparent 25%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Each Item - Premium card */
 .hstrip-item {
     position: relative;
-    width: 260px;
-    /* Narrower as showed in SS */
-    min-height: 420px;
-    /* Taller */
-    padding: 40px 25px;
+    width: clamp(240px, 24vw, 340px);
+    min-height: 420px; /* keep existing height */
+    padding: 36px 28px;
     margin: 0;
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
-    box-shadow: 0 15px 45px rgba(42, 82, 190, 0.05);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(6px) saturate(110%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(20,30,85,0.06);
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
+    transform-origin: center center;
+    overflow: visible; /* allow soft glows to show */
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centered content as in SS */
     text-align: center;
+    z-index: 10;
 }
 
-/* 3D Arc States (Updated via JS but set baseline) */
+/* Active (center) card — larger, glass, blue accent */
 .hstrip-item.is-active {
-    background: #ffffff;
-    box-shadow: 0 50px 120px rgba(42, 82, 190, 0.2);
-    border: 2px solid rgba(42, 82, 190, 0.25);
-    z-index: 50;
+    transform: scale(1.18);
+    opacity: 1;
+    box-shadow: 0 40px 120px rgba(42,82,190,0.22);
+    border: 2px solid rgba(42,82,190,0.18);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,251,255,0.85));
+    backdrop-filter: blur(8px) saturate(120%);
+    z-index: 60;
+}
+
+/* Side cards — smaller, dimmed, slight blur */
+.hstrip-item:not(.is-active) {
+    transform: scale(0.94);
+    opacity: 0.72;
+    filter: blur(1.2px) saturate(95%);
+    box-shadow: 0 8px 30px rgba(20,30,85,0.04);
+    z-index: 20;
+}
+
+/* Remove old heavy icon wrap visuals if present (they were decorative)
+   Keep internal content untouched */
+.hstrip-icon-wrap { display: none !important; }
+
+/* Modern progress accent replacing underline */
+.hstrip-line {
+    width: 56px;
+    height: 6px;
+    border-radius: 999px;
+    margin-top: 22px;
+    background: linear-gradient(90deg, rgba(42,82,190,0.88), rgba(59,130,246,0.6));
+    box-shadow: 0 8px 30px rgba(42,82,190,0.12);
+    opacity: 0.9;
+    transition: width 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
+}
+.hstrip-item.is-active .hstrip-line { width: 84px; transform: translateY(-2px); opacity: 1; }
+
+/* Improved typography spacing inside cards */
+.hstrip-num { margin-bottom: 10px; font-size: clamp(2rem, 4.5vw, 3.2rem); }
+.hstrip-item-title { font-size: clamp(1.05rem, 2.2vw, 1.5rem); margin-bottom: 8px; }
+.hstrip-item-desc { max-width: 30ch; font-size: 0.98rem; }
+
+/* Ensure mobile responsiveness — show partial cards */
+@media (max-width: 768px) {
+    .hstrip-track { gap: 22px; }
+    .hstrip-item { width: 280px; min-height: 400px; padding: 28px; }
+    .hstrip-item.is-active { transform: scale(1.05); }
+    .hstrip-item:not(.is-active) { transform: scale(0.95); opacity: 0.85; filter: none; }
+    .hstrip-track { padding-left: 18vw !important; padding-right: 18vw !important; }
 }
 
 .hstrip-item:not(.is-active) {
@@ -5088,9 +5139,10 @@ body.modal-active #ai-chat-assistant {
     position: relative;
     z-index: 2;
     font-size: 0.98rem;
-    color: #5b6475;
+    color: #0b0b0b; /* changed to solid near-black for improved readability */
     line-height: 1.8;
     max-width: 280px;
+    opacity: 1; /* ensure the description remains fully legible */
 }
 
 /* Bottom accent line */
