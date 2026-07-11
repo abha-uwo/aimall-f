@@ -67,8 +67,7 @@ body.about-page #about-hero .cta-group {
     position: relative;
     padding: 60px 0;
     overflow: hidden;
-    background-color: #f8fafc;
-    /* Soft white / off-white */
+    background: #f8fafc;
     z-index: 1;
     font-family: 'Inter', sans-serif;
 }
@@ -255,18 +254,27 @@ body.about-page #about-hero .cta-group {
 .lt-uwo-bg {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     pointer-events: none;
     overflow: hidden;
+    background: none;
+}
+
+.lt-uwo-section::before {
+    content: none;
+}
+
+.lt-uwo-layout {
+    position: relative;
+    z-index: 1;
 }
 
 .lt-uwo-image-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top left, rgba(59,130,246,0.12), transparent 30%),
-                radial-gradient(circle at bottom right, rgba(14,165,233,0.10), transparent 28%);
-    opacity: 0.85;
-    filter: blur(0px);
+    background: none;
+    opacity: 0;
+    filter: none;
 }
 
 .lt-blob {
@@ -328,11 +336,11 @@ body.about-page #about-hero .cta-group {
     width: 100%;
     height: 100%;
     border-radius: 28px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.85);
-    box-shadow: 0 30px 90px rgba(15, 23, 42, 0.12);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -341,12 +349,7 @@ body.about-page #about-hero .cta-group {
 }
 
 .lt-card-reflection {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, transparent 35%);
-    pointer-events: none;
-    opacity: 0.8;
-    mix-blend-mode: screen;
+    display: none;
 }
 
 .lt-card-media {
@@ -355,18 +358,15 @@ body.about-page #about-hero .cta-group {
     flex: 1 1 auto;
     min-height: 320px;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(236, 246, 255, 0.95), rgba(255, 255, 255, 0.9));
+    background: transparent;
 }
 
 .lt-media-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.15) 100%);
-    pointer-events: none;
-    z-index: 1;
+    display: none;
 }
 
-.lt-video {
+.lt-video,
+.lt-media-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
