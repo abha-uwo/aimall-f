@@ -4931,16 +4931,16 @@ body.modal-active #ai-chat-assistant {
     /* move center upward so glow begins above the ROADMAP label */
     top: 6%;
     transform: translate(-50%, -12%);
-    /* increase overall size by ~45% for broader coverage */
+    /* keep glow focused on the header and fade out before the cards */
     width: min(92vw, 1500px);
-    height: 400px;
-    /* stronger center opacity, smooth fade to transparent for subtle contrast */
+    height: 260px;
+    /* stronger center opacity with faster fade to transparent */
     background: radial-gradient(circle at center,
         rgba(255,255,255,0.62) 0%,
-        rgba(255,255,255,0.58) 18%,
-        rgba(255,255,255,0.36) 40%,
-        rgba(255,255,255,0.12) 64%,
-        rgba(255,255,255,0.00) 92%);
+        rgba(255,255,255,0.58) 16%,
+        rgba(255,255,255,0.36) 34%,
+        rgba(255,255,255,0.12) 52%,
+        rgba(255,255,255,0.00) 72%);
     filter: blur(46px);
     pointer-events: none;
     z-index: 0; /* header content remains above */
@@ -4951,7 +4951,7 @@ body.modal-active #ai-chat-assistant {
     .hstrip-header::before {
         top: 4%;
         transform: translate(-50%, -10%);
-        height: 240px;
+        height: 180px;
         width: min(96vw, 900px);
         filter: blur(34px);
     }
