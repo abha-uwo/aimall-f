@@ -291,28 +291,29 @@
 
             <!-- 3D Navigation Controls -->
             <div class="hstrip-controls">
-                <button class="hstrip-nav-btn prev" id="hstrip-prev" aria-label="Previous card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                </button>
+                <div class="hstrip-nav-wrap">
+                    <button class="hstrip-nav-btn prev" id="hstrip-prev" aria-label="Previous card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+
+                    <div class="hstrip-progress-wrap nav-centered">
+                        <div class="hstrip-progress-bar" id="hstrip-progress"></div>
+                    </div>
+
+                    <button class="hstrip-nav-btn next" id="hstrip-next" aria-label="Next card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
 
                 <div class="hstrip-dots" id="hstrip-dots">
                     <!-- Dots dynamically injected by JS -->
                 </div>
-
-                <button class="hstrip-nav-btn next" id="hstrip-next" aria-label="Next card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Scroll Progress Line -->
-            <div class="hstrip-progress-wrap">
-                <div class="hstrip-progress-bar" id="hstrip-progress"></div>
             </div>
 
         </section>

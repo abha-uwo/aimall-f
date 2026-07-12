@@ -4844,9 +4844,26 @@ body.modal-active #ai-chat-assistant {
     position: relative;
     padding: 100px 0;
     overflow: visible;
-    background: url("/Free%20vector%20Gradient%20geometric%20blue%20technology%20background%20%20%23iblw14hi5u.jpg") center/cover no-repeat;
+    /* Try multiple locations for the renamed image so it loads regardless of where it's placed */
+    /* Reduced gradient opacity so the background image remains visible */
+    background-image: linear-gradient(rgba(250,251,255,0.12), rgba(248,251,255,0.12)),
+        url("/aboutfouthsectionimage.jpg"),
+        url("/ai-mall_frontend/aboutfouthsectionimage.jpg"),
+        url("/public/aboutfouthsectionimage.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
     perspective: 1400px;
     /* Core for 3D depth */
+}
+
+.hstrip-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.06); /* lowered overlay opacity so image shows through */
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hstrip-section::before {
@@ -4902,6 +4919,44 @@ body.modal-active #ai-chat-assistant {
     padding: 0 40px;
 }
 
+/* Subtle radial glow behind the heading and subtitle to improve contrast
+   - Uses a centered radial-gradient with semi-transparent white in the center
+   - Fades smoothly to transparent so the background image remains visible
+   - Positioned behind text using z-index and pointer-events:none
+*/
+.hstrip-header::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    /* move center upward so glow begins above the ROADMAP label */
+    top: 6%;
+    transform: translate(-50%, -12%);
+    /* increase overall size by ~45% for broader coverage */
+    width: min(92vw, 1500px);
+    height: 400px;
+    /* stronger center opacity, smooth fade to transparent for subtle contrast */
+    background: radial-gradient(circle at center,
+        rgba(255,255,255,0.62) 0%,
+        rgba(255,255,255,0.58) 18%,
+        rgba(255,255,255,0.36) 40%,
+        rgba(255,255,255,0.12) 64%,
+        rgba(255,255,255,0.00) 92%);
+    filter: blur(46px);
+    pointer-events: none;
+    z-index: 0; /* header content remains above */
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .hstrip-header::before {
+        top: 4%;
+        transform: translate(-50%, -10%);
+        height: 240px;
+        width: min(96vw, 900px);
+        filter: blur(34px);
+    }
+}
+
 .hstrip-label {
     font-size: 0.78rem;
     font-weight: 700;
@@ -4914,10 +4969,11 @@ body.modal-active #ai-chat-assistant {
 .hstrip-title {
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 800;
-    color: #050a1a;
+    color: #04132a; /* darker heading for legibility */
     letter-spacing: -0.04em;
     line-height: 1.1;
     margin-bottom: 16px;
+    text-shadow: 0 3px 14px rgba(2,8,20,0.06);
 }
 
 .hstrip-gradient {
@@ -4980,15 +5036,15 @@ body.modal-active #ai-chat-assistant {
 .hstrip-item {
     position: relative;
     width: clamp(240px, 24vw, 340px);
-    min-height: 420px; /* keep existing height */
-    padding: 36px 28px;
+    min-height: 340px; /* reduced so content fills card vertically */
+    padding: 28px 22px; /* smaller padding to reduce overall card height */
     margin: 0;
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(6px) saturate(110%);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px) saturate(120%);
     border: 1px solid rgba(255,255,255,0.6);
     border-radius: 18px;
-    box-shadow: 0 12px 40px rgba(20,30,85,0.06);
+    box-shadow: 0 18px 50px rgba(9,30,66,0.12);
     transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
     transform-origin: center center;
     overflow: visible; /* allow soft glows to show */
@@ -5001,7 +5057,7 @@ body.modal-active #ai-chat-assistant {
 
 /* Active (center) card — larger, glass, blue accent */
 .hstrip-item.is-active {
-    transform: scale(1.18);
+    transform: scale(1.12); /* slightly reduced scale to avoid extra vertical space */
     opacity: 1;
     box-shadow: 0 40px 120px rgba(42,82,190,0.22);
     border: 2px solid rgba(42,82,190,0.18);
@@ -5044,7 +5100,7 @@ body.modal-active #ai-chat-assistant {
 /* Ensure mobile responsiveness — show partial cards */
 @media (max-width: 768px) {
     .hstrip-track { gap: 22px; }
-    .hstrip-item { width: 280px; min-height: 400px; padding: 28px; }
+    .hstrip-item { width: 280px; min-height: 360px; padding: 22px; }
     .hstrip-item.is-active { transform: scale(1.05); }
     .hstrip-item:not(.is-active) { transform: scale(0.95); opacity: 0.85; filter: none; }
     .hstrip-track { padding-left: 18vw !important; padding-right: 18vw !important; }
@@ -5126,23 +5182,25 @@ body.modal-active #ai-chat-assistant {
 .hstrip-item-title {
     position: relative;
     z-index: 2;
-    font-size: 1.3rem;
+    font-size: clamp(1.25rem, 2.8vw, 1.9rem);
     font-weight: 700;
-    color: #2a52be;
-    margin-bottom: 12px;
-    line-height: 1.3;
+    color: #08203a; /* darker for better contrast */
+    margin-bottom: 6px; /* tightened so title sits closer to description */
+    line-height: 1.25;
     transition: color 0.3s ease, transform 0.4s ease;
+    text-shadow: 0 2px 8px rgba(3,10,23,0.06);
 }
 
 /* Description */
 .hstrip-item-desc {
     position: relative;
     z-index: 2;
-    font-size: 0.98rem;
-    color: #0b0b0b; /* changed to solid near-black for improved readability */
-    line-height: 1.8;
+    font-size: 1rem;
+    color: #122235; /* slightly bluish near-black for readability */
+    line-height: 1.9;
     max-width: 280px;
-    opacity: 1; /* ensure the description remains fully legible */
+    opacity: 1;
+    margin-top: 10px; /* reduced gap between title and description */
 }
 
 /* Bottom accent line */
@@ -5210,6 +5268,51 @@ body.modal-active #ai-chat-assistant {
     padding: 10px;
 }
 
+/* New nav wrapper holding prev button, progress line, next button
+   Uses flex so the progress line always centers and stretches only between the buttons */
+.hstrip-nav-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px; /* space between buttons and progress */
+}
+
+.hstrip-progress-wrap.nav-centered {
+    flex: 0 1 72%; /* occupy most of the space between buttons */
+    min-width: 280px;
+    max-width: 640px;
+    height: 6px; /* thin elegant line */
+    margin: 0; /* controlled by flex */
+    padding: 0 16px; /* leave 16px gap from circle edges */
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+}
+
+.hstrip-progress-wrap.nav-centered .hstrip-progress-bar {
+    height: 6px;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #2563EB 0%, #60A5FA 100%);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.28), 0 0 10px rgba(96,165,250,0.14);
+    transition: width 0.12s linear;
+    position: relative;
+    transform-origin: left center;
+}
+
+/* Ensure nav buttons remain interactive and have a reasonable stacking position */
+.hstrip-nav-btn {
+    position: relative;
+    z-index: 200;
+}
+
+/* Nudge navigation buttons horizontally to create breathing room around the progress line */
+.hstrip-nav-btn.prev { left: -18px; }
+.hstrip-nav-btn.next { left: 18px; }
+
 .hstrip-nav-btn {
     width: 65px;
     height: 65px;
@@ -5217,7 +5320,8 @@ body.modal-active #ai-chat-assistant {
     border: none;
     background: #ffffff;
     color: #2a52be;
-    box-shadow: 0 12px 35px rgba(42, 82, 190, 0.12);
+    /* keep size/position but add a subtle shadow so buttons remain visible over varied backgrounds */
+    box-shadow: 0 12px 35px rgba(42, 82, 190, 0.12), 0 4px 12px rgba(2,8,23,0.08);
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     display: flex;
@@ -5239,29 +5343,6 @@ body.modal-active #ai-chat-assistant {
     /* More defined arrows */
 }
 
-.hstrip-dots {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    padding: 0 10px;
-}
-
-.hstrip-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #2a52be;
-    opacity: 0.15;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.hstrip-dot.active {
-    opacity: 1;
-    transform: scale(1.8);
-    /* Significantly larger center dot */
-    box-shadow: 0 0 15px rgba(42, 82, 190, 0.3);
-}
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
@@ -5273,25 +5354,6 @@ body.modal-active #ai-chat-assistant {
     .hstrip-controls {
         gap: 20px;
     }
-}
-
-.hstrip-progress-wrap {
-    position: relative;
-    z-index: 2;
-    width: 240px;
-    height: 3px;
-    background: rgba(42, 82, 190, 0.1);
-    border-radius: 3px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.hstrip-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #2a52be;
-    border-radius: 3px;
-    transition: width 0.1s linear;
 }
 
 /* ---- MOBILE: vertical stack ---- */
