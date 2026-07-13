@@ -6826,7 +6826,7 @@ body.modal-active #ai-chat-assistant {
 
 .chat-window {
     position: fixed;
-    top: 50%;
+    top: 55%; /* Moved down from 50% to avoid overlapping navbar */
     left: 50%;
     bottom: auto;
     right: auto;
