@@ -1811,14 +1811,17 @@ section {
 }
 
 #hero .headline {
-    font-family: 'Inter', 'Plus Jakarta Sans', 'Manrope', system-ui, sans-serif !important;
-    font-size: 96px;
-    font-weight: 900;
-    line-height: 1.02;
-    margin-bottom: 24px;
-    max-width: 760px;
-    letter-spacing: -0.04em;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    max-width: 1000px;
+    letter-spacing: normal;
     text-transform: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* About page only: match exact text design from reference */
@@ -1845,25 +1848,26 @@ section {
 
 @media (min-width: 1600px) {
     #hero .headline {
-        font-size: 110px;
+        font-size: 88px;
     }
 }
 
 @media (max-width: 1200px) {
     #hero .headline {
-        font-size: 88px;
+        font-size: 72px;
     }
 }
 
 @media (max-width: 768px) {
     #hero .headline {
-        font-size: 60px;
+        font-size: 52px;
     }
 }
 
 #hero .headline em {
     font-style: italic;
-    font-weight: 900;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #hero .subheadline {
