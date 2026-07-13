@@ -19,7 +19,7 @@ body.about-page #about-hero .hero-content {
 
 @media (min-width: 1024px) {
     body.about-page #about-hero .hero-content {
-        transform: none;
+        transform: translateX(-100px); /* Push text section left so it doesn't touch the globe */
     }
     /* about-scroll is now absolutely positioned — no transform needed */
 }
