@@ -1696,25 +1696,24 @@ section {
     overflow: hidden;
 }
 
-/* About page hero only: lift content area higher without touching global hero styles */
+/* About page hero only: ensure normal vertical alignment */
 #about-hero {
-    align-items: flex-start;
-    padding-top: 10px; /* bring section content higher overall */
+    align-items: center;
+    padding-top: 0;
 }
 
-/* Slightly raise and nudge the left hero content so it sits under the "Our Story" label */
-/* Page-scoped adjustment: move the left content block up and slightly left
+/* Page-scoped adjustment: remove offsets to maintain natural alignment
    (only affects About page via #about-hero selectors) */
 #about-hero .hero-content {
-    transform: translate(-40px, -56px); /* left by 40px, up by 56px */
+    transform: none;
     text-align: left;
-    max-width: 760px; /* narrow the content column specifically on About */
+    max-width: 650px;
 }
 
-/* Subtle left nudge for the headline to align visually under the label */
+/* Remove headline overrides for About */
 #about-hero .headline {
-    transform: none; /* headline position handled by parent .hero-content transform */
-    max-width: 85%; /* reduce heading width by ~15% so it wraps more naturally */
+    transform: none;
+    max-width: 100%;
 }
 
 #hero {
@@ -1822,10 +1821,16 @@ section {
     text-transform: none;
 }
 
-/* About page only: slightly reduce the headline size so it wraps better */
+/* About page only: match exact text design from reference */
 #about-hero .headline {
-    font-size: 80px; /* slightly smaller than home hero */
-    max-width: 72%;
+    font-size: 80px;
+    max-width: 100%;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-weight: 700 !important;
+    letter-spacing: normal !important;
+}
+#about-hero .headline .text-blue {
+    color: #2a52be !important;
 }
 
 @media (min-width: 1600px) {

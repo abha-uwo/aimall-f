@@ -14,12 +14,12 @@ body.about-page #about-hero .hero-overlay {
 body.about-page #about-hero .hero-content {
     text-align: left;
     margin: 0;
-    max-width: 850px;
+    max-width: 650px;
 }
 
 @media (min-width: 1024px) {
     body.about-page #about-hero .hero-content {
-        transform: translateX(-80px);
+        transform: none;
     }
     /* about-scroll is now absolutely positioned — no transform needed */
 }
