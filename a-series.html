@@ -351,52 +351,16 @@
                         </div>
 
                         <!-- Right Side: Pipeline Visual -->
-                        <div class="vision-card-area">
-                            <div class="nested-glass-card pipeline-focus-card" onclick="openAisaModal()">
-                                <div class="nested-card-inner">
-                                    <div class="preview-grid">
-                                        <!-- AISA Card -->
-                                        <div class="pipeline-block">
-                                            <div class="block-icon"><img src="/logos/3d_brain.png" alt="AISA"></div>
-                                            <div class="block-info-col">
-                                                <div class="block-badge">AISA™</div>
-                                                <div class="block-title">Autonomous Agent</div>
-                                                <div class="block-desc">Real-time workflows & memory layers.</div>
-                                            </div>
-                                        </div>
-                                        <!-- AI Calling Card -->
-                                        <div class="pipeline-block">
-                                            <div class="block-icon"><img src="/logos/3d_magic.png" alt="Calling"></div>
-                                            <div class="block-info-col">
-                                                <div class="block-badge">AI Calling™</div>
-                                                <div class="block-title">Voice Intelligence</div>
-                                                <div class="block-desc">Cognitive telephony response systems.</div>
-                                            </div>
-                                        </div>
-                                        <!-- Neuro-Link -->
-                                        <div class="pipeline-block">
-                                            <div class="block-icon"><img src="/logos/3d_rag.png" alt="RAG"></div>
-                                            <div class="block-info-col">
-                                                <div class="block-badge">Core™</div>
-                                                <div class="block-title">Neural Engine</div>
-                                                <div class="block-desc">Orchestration logic for deep integration.</div>
-                                            </div>
-                                        </div>
-                                        <!-- Scale -->
-                                        <div class="pipeline-block">
-                                            <div class="block-icon"><img src="/logos/3d_automation.png" alt="Scale"></div>
-                                            <div class="block-info-col">
-                                                <div class="block-badge">Scale™</div>
-                                                <div class="block-title">Enterprise Hub</div>
-                                                <div class="block-desc">Global deployment & sync architecture.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-hover-overlay">
-                                        <span>Explore Pipeline</span>
-                                    </div>
-                                </div>
+                        <div class="vision-card-area" style="display: flex; flex-direction: column; align-items: center;">
+                            <!-- Only the image remains (non-clickable) -->
+                            <div class="pipeline-focus-image">
+                                <img src="/A-series .png" alt="A-Series Pipeline">
                             </div>
+                            
+                            <!-- Separate Explore Pipeline CTA button -->
+                            <button class="explore-pipeline-btn" onclick="openAisaModal()">
+                                Explore Pipeline
+                            </button>
                             <div class="mobile-view-more" onclick="window.openAisaModal()">View more <span class="v-chevron">↓</span></div>
                         </div>
                     </div>

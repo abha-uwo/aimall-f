@@ -1735,7 +1735,7 @@ section {
 }
 
 #hero .parallax-img {
-    opacity: 0.72;
+    opacity: 0.45;
     filter: none;
 }
 
@@ -12437,4 +12437,146 @@ body.pillar-modal-open #header {
 #pillars .pillar-column:hover {
     transform: none !important;
 }
+
+/* ========================================================================= */
+/* A-SERIES PAGE HERO SECTION — TYPOGRAPHY & ALIGNMENT RESTORE               */
+/* Scoped to #aseries-hero only — does NOT affect any other page/section     */
+/* ========================================================================= */
+
+/* Center the hero content block */
+#aseries-hero .hero-content {
+    text-align: center !important;
+    margin: 0 auto !important;
+    max-width: 860px !important;
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Portfolio Suite label */
+#aseries-hero .section-label {
+    text-align: center !important;
+    letter-spacing: 0.18em !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+}
+
+/* Main heading — restore original centered serif style */
+#aseries-hero .headline {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: clamp(3rem, 6vw, 5.2rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.01em !important;
+    text-align: center !important;
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 28px !important;
+    color: #0d1117 !important;
+}
+
+/* Blue colored span for "AI Operating Layer." */
+#aseries-hero .headline .gradient-text {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: #1a47c8 !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #1a47c8 !important;
+    background-clip: unset !important;
+}
+
+/* Description paragraph — center and constrain width */
+#aseries-hero .subheadline {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 620px !important;
+    font-size: 1.15rem !important;
+    line-height: 1.65 !important;
+    color: rgba(13, 17, 23, 0.7) !important;
+}
+
+/* A-Series hero overlay — reduced opacity so background image is more visible */
+#aseries-hero .hero-overlay {
+    opacity: 0.25 !important;
+}
+
+/* A-Series hero — soft white frosted glass backdrop behind text for readability */
+#aseries-hero .hero-content {
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 100%) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    padding: 48px 60px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* A-Series 4th Section (In the Pipeline) - Separate Explore Pipeline Button */
+#coming-soon .explore-pipeline-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, rgba(42, 82, 190, 0.95), rgba(139, 92, 246, 0.95)) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 14px 36px !important;
+    border: 2px solid white !important;
+    border-radius: 100px !important;
+    cursor: pointer !important;
+    margin-top: 25px !important; /* Spacing below the card */
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    box-shadow: 0 8px 24px rgba(42, 82, 190, 0.25) !important;
+    outline: none !important;
+}
+
+#coming-soon .explore-pipeline-btn:hover {
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 12px 32px rgba(42, 82, 190, 0.4) !important;
+    background: linear-gradient(135deg, rgba(42, 82, 190, 1), rgba(139, 92, 246, 1)) !important;
+}
+
+
+/* Scoped rules for the standalone image view */
+#coming-soon .pipeline-focus-image {
+    cursor: default !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+#coming-soon .pipeline-focus-image img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 26px !important;
+}
+
+/* Match 'Notify Me' button color with 'Explore Pipeline' button color */
+#coming-soon .btn-premium-glow {
+    background: linear-gradient(135deg, rgba(42, 82, 190, 0.95), rgba(139, 92, 246, 0.95)) !important;
+    border: 2px solid white !important;
+    box-shadow: 0 8px 24px rgba(42, 82, 190, 0.25) !important;
+}
+
+#coming-soon .btn-premium-glow:hover {
+    background: linear-gradient(135deg, rgba(42, 82, 190, 1), rgba(139, 92, 246, 1)) !important;
+    box-shadow: 0 12px 32px rgba(42, 82, 190, 0.4) !important;
+    transform: translateY(-3px) scale(1.03) !important;
+}
+
+/* Shift left CTA buttons down to align horizontally with the right side Explore Pipeline button */
+#coming-soon .premium-cta-group {
+    margin-top: 70px !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+
 
