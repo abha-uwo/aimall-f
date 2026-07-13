@@ -677,3 +677,39 @@ body.about-page #mission-v2 .m-stats-row {
     justify-content: flex-start;
     gap: 50px; /* slightly reduce gap for tighter grouping on the left */
 }
+
+/* ========================================================================= */
+/* ABOUT PAGE ROADMAP (4TH) SECTION FIXES                                   */
+/* ========================================================================= */
+
+/* Overall section: reduce padding to fit within one viewport */
+body.about-page #building.hstrip-section {
+    padding: 55px 0 50px;
+}
+
+/* Header area: reduce bottom margin to pull cards up */
+body.about-page #building .hstrip-header {
+    margin-bottom: 35px;
+}
+
+/* Card track: reduce bottom padding of outer scroll area */
+body.about-page #building .hstrip-outer {
+    padding: 12px 0 30px;
+}
+
+/* Cards: reduce min-height slightly to save vertical space */
+body.about-page #building .hstrip-item {
+    min-height: 280px;
+    padding: 22px 20px;
+}
+
+/* Navigation controls: reduce top margin */
+body.about-page #building .hstrip-controls {
+    margin-top: 10px;
+}
+
+/* ROADMAP label: increase font size */
+body.about-page #building .hstrip-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.28em;
+}
