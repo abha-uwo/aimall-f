@@ -639,7 +639,13 @@ body.about-page #about-hero .cta-group {
 /* ========================================================================= */
 
 body.about-page #mission-v2 {
-    padding: 90px 0; /* Reduced from 150px to fit on one screen */
+    min-height: 100vh !important;   /* Full viewport height like other sections */
+    height: 100vh !important;
+    padding: 0 !important;          /* Remove vertical padding — use flex centering instead */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
 }
 
 /* Background image scale */
