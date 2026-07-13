@@ -44,7 +44,7 @@
         </nav>
         <div class="header-actions">
             <div class="header-cta desktop-only">
-                <a href="partner.html" class="nav-btn-link">Partner</a>
+                <a href="javascript:void(0)" onclick="openPartnerModal()" class="nav-btn-link">Partner</a>
                 <a href="a-series.html" class="btn-pill-small">Explore</a>
             </div>
 
@@ -344,7 +344,7 @@
                                 <a href="contact.html" class="btn-premium-glow">
                                     Notify Me <span class="btn-icon">→</span>
                                 </a>
-                                <a href="partner.html" class="btn-premium-outline-v2">
+                                <a href="javascript:void(0)" onclick="openPartnerModal()" class="btn-premium-outline-v2">
                                     Partner with Us
                                 </a>
                             </div>
@@ -368,15 +368,71 @@
             </div>
         </section>
 
-        <!-- CTA SECTION -->
-        <section id="innovation-cta" class="scroll-section cta-minimal">
-            <div class="container text-center">
-                <div class="reveal-on-scroll">
-                    <h2 class="cta-headline">Join the A-Series<span class="tm">™</span> <br> Innovation Program</h2>
-                    <p class="medium-body text-muted mb-40">Partner early to shape the future of autonomous commerce.
-                    </p>
-                    <button class="btn btn-primary xxl glow">Apply to Join →</button>
-                    <p class="small text-muted mt-20">Early access for strategic enterprise partners.</p>
+        <!-- CTA SECTION REDESIGN -->
+        <section id="innovation-cta" class="scroll-section">
+            <div class="bg-effects"></div>
+            <div class="bg-glow"></div>
+            <div class="bg-particles"></div>
+
+            <div class="container">
+                <div class="glass-container reveal-on-scroll">
+                    
+                    <!-- Left Side Content (Unchanged text, new structure) -->
+                    <div class="left-col">
+                        <span class="cta-label">NEXT GENERATION</span>
+                        <h2 class="cta-headline">
+                            Join the A-Series<span class="tm">™</span> <br> 
+                            <span class="gradient-text">Innovation Program</span>
+                        </h2>
+                        <p class="desc-text">Partner early to shape the future of autonomous commerce.</p>
+                        
+                        <button class="btn btn-primary xxl glow">Apply to Join →</button>
+                        
+                        <p class="small-text">Early access for strategic enterprise partners.</p>
+                    </div>
+
+                    <!-- Right Side Illustration -->
+                    <div class="right-col">
+                        <div class="connection-lines">
+                            <div class="line line-1"></div>
+                            <div class="line line-2"></div>
+                            <div class="line line-3"></div>
+                            <div class="line line-4"></div>
+                        </div>
+
+                        <div class="ai-illustration">
+                            <div class="platform"></div>
+                            <div class="cube-wrapper">
+                                <div class="cube">
+                                    <div class="cube-face face-front">A-Series™</div>
+                                    <div class="cube-face face-back">A-Series™</div>
+                                    <div class="cube-face face-right">A-Series™</div>
+                                    <div class="cube-face face-left">A-Series™</div>
+                                    <div class="cube-face face-top">A-Series™</div>
+                                    <div class="cube-face face-bottom"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Glass Cards -->
+                        <div class="float-card card-1">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            Early Access
+                        </div>
+                        <div class="float-card card-2">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            Enterprise Ready
+                        </div>
+                        <div class="float-card card-3">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            AI Innovation
+                        </div>
+                        <div class="float-card card-4">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            Future Focused
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -607,7 +663,7 @@
                         </div>
 
                         <div class="aisa-modal-cta">
-                            <a href="https://tally.so/r/w2v8O6" target="_blank" class="btn-premium-glow">Request Early Access</a>
+                            <a href="https://aisa24.com" target="_blank" class="btn-premium-glow">Request Early Access</a>
                             <a href="javascript:void(0)" onclick="closeAisaModal()" class="btn-premium-outline-v2 mobile-cancel-btn">Cancel</a>
                         </div>
                     </div>
@@ -734,6 +790,161 @@
             }
         };
     </script>
+
+    <!-- ======================================================= -->
+    <!-- PARTNER MODAL — Embedded from partner.html              -->
+    <!-- ======================================================= -->
+    <div id="aseries-partner-modal-overlay" onclick="if(event.target===this)closePartnerModal()"
+        style="display:none;position:fixed;inset:0;background:rgba(11,18,32,0.6);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);z-index:9000;align-items:center;justify-content:center;padding:80px 20px 20px 20px;">
+        <style>
+            #aseries-partner-modal::-webkit-scrollbar { display:none; }
+            #aseries-partner-modal .form-group input,
+            #aseries-partner-modal .form-group select,
+            #aseries-partner-modal .form-group textarea {
+                padding:24px 16px 8px !important;
+                background:#f8faff !important;
+                border:1.5px solid rgba(42,82,190,0.1) !important;
+                border-radius:10px !important;
+                font-size:0.9rem !important;
+                color:#1a202c !important;
+                width:100% !important;
+                box-sizing:border-box !important;
+                transition:border-color 0.3s ease,box-shadow 0.3s ease !important;
+            }
+            #aseries-partner-modal .form-group textarea { padding-top:28px !important; resize:none !important; }
+            #aseries-partner-modal .form-group input:focus,
+            #aseries-partner-modal .form-group select:focus,
+            #aseries-partner-modal .form-group textarea:focus {
+                outline:none !important;
+                border-color:#2a52be !important;
+                box-shadow:0 0 0 3px rgba(42,82,190,0.1) !important;
+                background:white !important;
+            }
+            #aseries-partner-modal .form-group label {
+                position:absolute;
+                left:16px;
+                top:50%;
+                transform:translateY(-50%);
+                font-size:0.85rem;
+                color:rgba(42,82,190,0.45);
+                pointer-events:none;
+                transition:all 0.25s ease;
+            }
+            #aseries-partner-modal .form-group.focused label,
+            #aseries-partner-modal .form-group.has-value label {
+                top:8px;
+                transform:translateY(0);
+                font-size:0.65rem;
+                font-weight:700;
+                color:#2a52be;
+                text-transform:uppercase;
+                letter-spacing:0.08em;
+            }
+            #aseries-partner-modal .form-group { position:relative; margin-bottom:0; }
+        </style>
+        <div id="aseries-partner-modal" data-lenis-prevent
+            style="background:white;border:1px solid rgba(42,82,190,0.1);border-radius:20px;padding:30px;width:100%;max-width:460px;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.25);scrollbar-width:none;-ms-overflow-style:none;">
+            <button onclick="closePartnerModal()"
+                style="position:absolute;top:15px;right:15px;background:rgba(42,82,190,0.06);border:none;color:#2a52be;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;"
+                onmouseover="this.style.background='rgba(42,82,190,0.15)';this.style.transform='rotate(90deg)'"
+                onmouseout="this.style.background='rgba(42,82,190,0.06)';this.style.transform='none'">✕</button>
+            <div style="margin-bottom:30px;">
+                <div style="font-size:.7rem;font-weight:800;letter-spacing:.2em;color:#2a52be;text-transform:uppercase;margin-bottom:8px;">Partnership Application</div>
+                <h2 style="font-size:1.7rem;font-weight:800;color:#0b1220;letter-spacing:-.03em;line-height:1.2;margin-bottom:6px;">Apply to Partner <br>with AI-MALL™</h2>
+                <p style="color:rgba(11,18,32,0.6);font-size:0.85rem;">Join the future of global AI commerce.</p>
+            </div>
+            <form id="aseries-partner-form" onsubmit="handleAseriesPartnerSubmit(event)">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                    <div class="form-group"><input type="text" id="ap-name" placeholder=" " required onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"><label for="ap-name">Full Name *</label></div>
+                    <div class="form-group"><input type="text" id="ap-company" placeholder=" " required onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"><label for="ap-company">Company *</label></div>
+                </div>
+                <div style="margin-bottom:12px;" class="form-group"><input type="email" id="ap-email" placeholder=" " required onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"><label for="ap-email">Email Address *</label></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+                    <div class="form-group"><input type="tel" id="ap-phone" placeholder=" " onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"><label for="ap-phone">Phone</label></div>
+                    <div class="form-group"><input type="url" id="ap-website" placeholder=" " onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"><label for="ap-website">Website</label></div>
+                </div>
+                <div style="margin-bottom:12px;" class="form-group">
+                    <select id="ap-type" required onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)" onchange="apCheckSelect(this)">
+                        <option value="" disabled selected></option>
+                        <option value="Developer">Developer / Open Source</option>
+                        <option value="Enterprise">Enterprise Solutions</option>
+                        <option value="Global MNC">Global MNC</option>
+                        <option value="SaaS Vendor">SaaS Vendor</option>
+                        <option value="AI Tool Provider">AI Tool Provider</option>
+                        <option value="Automation Agency">Automation Agency</option>
+                    </select>
+                    <label for="ap-type">Partnership Type *</label>
+                </div>
+                <div style="margin-bottom:20px;" class="form-group">
+                    <textarea id="ap-message" rows="3" placeholder=" " onfocus="apSetFocus(this)" onblur="apRemoveFocus(this)"></textarea>
+                    <label for="ap-message">About your product</label>
+                </div>
+                <button type="submit" id="ap-submit-btn"
+                    style="width:100%;padding:16px;border:none;border-radius:12px;background:#2a52be;color:white;font-size:0.95rem;font-weight:800;cursor:pointer;transition:all 0.4s;box-shadow:0 10px 25px rgba(42,82,190,0.2);text-transform:uppercase;letter-spacing:0.08em;"
+                    onmouseover="this.style.transform='translateY(-2px)';this.style.background='#1e3a8a';"
+                    onmouseout="this.style.transform='none';this.style.background='#2a52be';">
+                    <span id="ap-btn-text">Submit Application →</span>
+                    <span id="ap-spinner" class="btn-loader" style="display:none;"></span>
+                </button>
+                <p id="ap-success-msg" style="display:none;text-align:center;margin-top:20px;font-weight:700;font-size:0.95rem;"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openPartnerModal() {
+            document.getElementById('aseries-partner-modal-overlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closePartnerModal() {
+            document.getElementById('aseries-partner-modal-overlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function apSetFocus(el) { el.parentElement.classList.add('focused'); }
+        function apRemoveFocus(el) { el.parentElement.classList.remove('focused'); if(el.value.trim()) el.parentElement.classList.add('has-value'); else el.parentElement.classList.remove('has-value'); }
+        function apCheckSelect(el) { if(el.value) el.parentElement.classList.add('has-value'); }
+
+        async function handleAseriesPartnerSubmit(e) {
+            e.preventDefault();
+            const btnText = document.getElementById('ap-btn-text');
+            const spinner = document.getElementById('ap-spinner');
+            const msg = document.getElementById('ap-success-msg');
+            const data = {
+                name: document.getElementById('ap-name').value,
+                company: document.getElementById('ap-company').value,
+                email: document.getElementById('ap-email').value,
+                phone: document.getElementById('ap-phone').value,
+                partner_type: document.getElementById('ap-type').value,
+                website: document.getElementById('ap-website').value,
+                message: document.getElementById('ap-message').value,
+            };
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+            try {
+                const apiUrl = window.API_URL || 'http://localhost:8080';
+                const res = await fetch(`${apiUrl}/api/partner`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+                const result = await res.json();
+                spinner.style.display = 'none';
+                btnText.style.display = 'inline';
+                msg.style.display = 'block';
+                if(result.success) {
+                    msg.style.color = '#00d48e';
+                    msg.textContent = '✅ ' + result.message;
+                    document.getElementById('aseries-partner-form').reset();
+                } else {
+                    msg.style.color = '#ff4d6d';
+                    msg.textContent = '❌ ' + (result.error || 'Error submitting.');
+                }
+            } catch(err) {
+                spinner.style.display = 'none';
+                btnText.style.display = 'inline';
+                msg.style.display = 'block';
+                msg.style.color = '#ff4d6d';
+                msg.textContent = '❌ Connection error. Please try again.';
+            }
+        }
+    </script>
+
     <script src="/config.js" type="module"></script>
     <script src="/gateway.js" type="module"></script>
     <script type="module" src="/main.js"></script>

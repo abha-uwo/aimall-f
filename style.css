@@ -12456,9 +12456,11 @@ body.pillar-modal-open #header {
 /* Portfolio Suite label */
 #aseries-hero .section-label {
     text-align: center !important;
-    letter-spacing: 0.18em !important;
-    font-size: 0.8rem !important;
-    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #1a47c8 !important;
+    text-shadow: 0.5px 0px 0px #1a47c8, -0.5px 0px 0px #1a47c8 !important;
     margin-bottom: 20px !important;
 }
 
@@ -12497,7 +12499,8 @@ body.pillar-modal-open #header {
     max-width: 620px !important;
     font-size: 1.15rem !important;
     line-height: 1.65 !important;
-    color: rgba(13, 17, 23, 0.7) !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 
 /* A-Series hero overlay — reduced opacity so background image is more visible */
@@ -12576,7 +12579,354 @@ body.pillar-modal-open #header {
     margin-bottom: 0 !important;
 }
 
+/* ========================================================================= */
+/* A-SERIES PAGE FIFTH SECTION (INNOVATION CTA) REDESIGN                     */
+/* Scoped to #innovation-cta only                                            */
+/* ========================================================================= */
 
+#innovation-cta {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+    background: transparent;
+}
 
+#innovation-cta .bg-effects {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('/tech_data_line_bg.jpg') center center / cover no-repeat;
+    overflow: hidden;
+}
 
+#innovation-cta .bg-effects::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.20);
+}
 
+#innovation-cta .bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(42, 82, 190, 0.06) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+#innovation-cta .bg-particles {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(42, 82, 190, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 82, 190, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: center center;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+}
+
+#innovation-cta .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#innovation-cta .glass-container {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(42, 82, 190, 0.15);
+    border-radius: 30px;
+    padding: 70px 80px;
+    box-shadow: 0 40px 100px rgba(11, 18, 32, 0.08), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    overflow: visible;
+}
+
+#innovation-cta .glass-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.8), transparent);
+    transform: translateX(-100%);
+    animation: glassShimmer 8s infinite;
+    pointer-events: none;
+}
+
+@keyframes glassShimmer {
+    0%, 50% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+#innovation-cta .left-col {
+    flex: 0 0 45%;
+    text-align: left;
+}
+
+#innovation-cta .right-col {
+    flex: 0 0 55%;
+    position: relative;
+    height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#innovation-cta .cta-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #2a52be;
+    margin-bottom: 24px;
+    display: block;
+}
+
+#innovation-cta .cta-headline {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    color: #0b1220;
+}
+
+#innovation-cta .cta-headline .gradient-text {
+    font-family: 'Times New Roman', Times, serif !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: #1a47c8 !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #1a47c8 !important;
+}
+
+#innovation-cta .tm {
+    font-size: 0.5em;
+    vertical-align: super;
+    font-style: normal;
+}
+
+#innovation-cta .desc-text {
+    font-size: 1.15rem;
+    color: rgba(11, 18, 32, 0.7);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+#innovation-cta .small-text {
+    font-size: 0.85rem;
+    color: rgba(11, 18, 32, 0.5);
+    margin-top: 20px;
+}
+
+/* 3D Cube & Platform */
+#innovation-cta .ai-illustration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#innovation-cta .platform {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 70px;
+    background: radial-gradient(ellipse at center, rgba(42, 82, 190, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(12px);
+}
+
+#innovation-cta .cube-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+    animation: floatCube 6s ease-in-out infinite;
+}
+
+@keyframes floatCube {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-20px); }
+}
+
+#innovation-cta .cube {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(45deg);
+    animation: rotateCube 20s linear infinite;
+}
+
+@keyframes rotateCube {
+    100% { transform: rotateX(-20deg) rotateY(405deg); }
+}
+
+#innovation-cta .cube-face {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, rgba(26, 71, 200, 0.8) 0%, rgba(11, 24, 60, 0.95) 100%);
+    border: 1.5px solid rgba(100, 200, 255, 0.5);
+    box-shadow: inset 0 0 30px rgba(100, 200, 255, 0.3), 0 0 15px rgba(26, 71, 200, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(100, 200, 255, 1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+#innovation-cta .cube-core {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(0);
+    background: #2a52be;
+    box-shadow: 0 0 40px #2a52be, 0 0 80px #2a52be;
+    border-radius: 50%;
+    animation: pulseCore 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseCore {
+    0% { transform: translate(-50%, -50%) translateZ(0) scale(0.9); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) translateZ(0) scale(1.1); opacity: 1; }
+}
+
+#innovation-cta .face-front  { transform: translateZ(70px); }
+#innovation-cta .face-back   { transform: rotateY(180deg) translateZ(70px); }
+#innovation-cta .face-right  { transform: rotateY(90deg) translateZ(70px); }
+#innovation-cta .face-left   { transform: rotateY(-90deg) translateZ(70px); }
+#innovation-cta .face-top    { transform: rotateX(90deg) translateZ(70px); }
+#innovation-cta .face-bottom { transform: rotateX(-90deg) translateZ(70px); box-shadow: 0 0 50px rgba(42, 82, 190, 0.4); }
+
+/* Floating Cards */
+#innovation-cta .float-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(42, 82, 190, 0.15);
+    border-radius: 12px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0b1220;
+    white-space: nowrap;
+    animation: cardFloat 4s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+#innovation-cta .float-card:hover {
+    transform: scale(1.05) !important;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(42, 82, 190, 0.15);
+    z-index: 10;
+}
+
+#innovation-cta .float-card svg {
+    width: 20px;
+    height: 20px;
+    color: #2a52be;
+}
+
+#innovation-cta .card-1 { top: 22%; left: -5%; animation-delay: 0s; }
+#innovation-cta .card-2 { top: 15%; right: 2%; animation-delay: -1s; }
+#innovation-cta .card-3 { bottom: 5%; left: -10%; animation-delay: -2s; }
+#innovation-cta .card-4 { bottom: 10%; right: 2%; animation-delay: -3s; }
+
+/* Connecting Lines */
+#innovation-cta .connection-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#innovation-cta .line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: linear-gradient(90deg, rgba(42, 82, 190, 0.6), transparent);
+    height: 1px;
+    transform-origin: left center;
+}
+
+#innovation-cta .line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 6px;
+    height: 6px;
+    background: #1a47c8;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #1a47c8;
+}
+
+#innovation-cta .line::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: #1a47c8;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #1a47c8;
+}
+
+#innovation-cta .line-1 { width: 38%; transform: rotate(-165deg); }
+#innovation-cta .line-2 { width: 38%; transform: rotate(-15deg); }
+#innovation-cta .line-3 { width: 42%; transform: rotate(155deg); }
+#innovation-cta .line-4 { width: 38%; transform: rotate(25deg); }
+
+/* Responsive */
+@media (max-width: 991px) {
+    #innovation-cta .glass-container {
+        flex-direction: column;
+        padding: 50px 30px;
+        text-align: center;
+        gap: 40px;
+    }
+    #innovation-cta .left-col {
+        text-align: center;
+    }
+    #innovation-cta .right-col {
+        width: 100%;
+        height: 350px;
+    }
+    #innovation-cta .float-card {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+    #innovation-cta .card-1 { left: -10px; }
+    #innovation-cta .card-2 { right: -10px; }
+    #innovation-cta .card-3 { left: -10px; }
+    #innovation-cta .card-4 { right: -10px; }
+}
