@@ -633,3 +633,47 @@ body.about-page #about-hero .cta-group {
         transform: none;
     }
 }
+
+/* ========================================================================= */
+/* ABOUT PAGE MISSION SECTION FIXES                                          */
+/* ========================================================================= */
+
+body.about-page #mission-v2 {
+    padding: 90px 0; /* Reduced from 150px to fit on one screen */
+}
+
+/* Background image scale */
+body.about-page #mission-v2 .mission-bg-base {
+    background-size: 110% auto; /* Shows more of the image compared to cover */
+    background-position: center center;
+}
+
+/* 'OUR MISSION' Label */
+body.about-page #mission-v2 .m-badge {
+    font-size: 1.05rem; /* ~20% larger */
+    letter-spacing: 0.25em; /* slightly increased */
+    margin-bottom: 25px; /* balanced spacing */
+}
+
+/* Main Title and Container */
+body.about-page #mission-v2 .mission-content-centered {
+    max-width: 900px; /* Increased to let text wrap naturally */
+}
+
+body.about-page #mission-v2 .m-text-reveal {
+    font-size: clamp(1.75rem, 3.8vw, 3.2rem); /* ~10-15% smaller */
+    line-height: 1.15; /* slightly reduced */
+    max-width: 100%;
+    margin-bottom: 25px; /* balanced spacing */
+}
+
+/* Support Line */
+body.about-page #mission-v2 .m-support-line {
+    margin-bottom: 40px; /* Reduced from 60px to save vertical space */
+}
+
+/* Stats Row: left-align to prevent covering the background image */
+body.about-page #mission-v2 .m-stats-row {
+    justify-content: flex-start;
+    gap: 50px; /* slightly reduce gap for tighter grouping on the left */
+}
