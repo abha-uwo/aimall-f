@@ -12383,3 +12383,58 @@ body.pillar-modal-open #header {
     }
 }
 
+/* ========================================================================= */
+/* HOME PAGE FOUNDATION SECTION — IMAGE POSITION, TITLE/DESC, HOVER          */
+/* Scoped strictly to #pillars to avoid touching any other page/section       */
+/* ========================================================================= */
+
+/* Reorder card contents using flex order */
+#pillars .pillar-column {
+    /* ensure flex column is active */
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#pillars .pillar-icon-wrapper {
+    order: 1 !important;
+    margin-bottom: 20px !important; /* Space from Icon to Title */
+}
+
+#pillars .pillar-title {
+    order: 2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important; /* Space from Title to Image */
+    min-height: 70px !important; /* Forces 1-line titles to take the same space as 2-line titles */
+}
+
+#pillars .pillar-illustration-wrapper {
+    order: 3 !important;
+    margin-top: 0 !important;
+    margin-bottom: 15px !important; /* Space from Image to Description */
+}
+
+#pillars .pillar-description {
+    order: 4 !important;
+    margin-bottom: 20px !important; /* Space from Description to Learn More */
+}
+
+#pillars .pillar-learn-more {
+    order: 5 !important;
+    margin-top: auto !important; /* Pushes button to bottom */
+}
+
+/* 3. Image hover: scale + upward float + blue glow + brightness — image ONLY */
+#pillars .pillar-illustration {
+    transition: transform 0.4s ease, filter 0.4s ease !important;
+}
+
+#pillars .pillar-column:hover .pillar-illustration {
+    transform: scale(1.09) translateY(-6px) !important;
+    filter: drop-shadow(0 8px 20px rgba(42, 82, 190, 0.35)) brightness(1.06) !important;
+}
+
+/* 4. Keep cards completely fixed on hover — remove card lift */
+#pillars .pillar-column:hover {
+    transform: none !important;
+}
+

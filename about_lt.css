@@ -713,3 +713,12 @@ body.about-page #building .hstrip-label {
     font-size: 1.1rem;
     letter-spacing: 0.28em;
 }
+
+/* ========================================================================= */
+/* ABOUT PAGE FIFTH SECTION (LEADERSHIP) - BACKGROUND IMAGE CHANGE           */
+/* ========================================================================= */
+body.about-page #leadership.profile-section {
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('/aboutfifthsection.png');
+    background-size: cover;
+    background-position: center;
+}
