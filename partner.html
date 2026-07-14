@@ -264,82 +264,126 @@
                 <p class="p-section-sub">Drag to explore our integration pathways</p>
             </div>
 
-            <!-- Horizontal scroll track -->
-            <div class="p-streams-outer" id="p-streams-outer">
-                <div class="p-streams-track" id="p-streams-track">
+            <!-- Ecosystem Hub Layout -->
+            <div class="p-ecosystem-wrapper" id="p-ecosystem-wrapper">
+                
+                <!-- SVG Connection Lines Background -->
+                <svg class="p-eco-svg-lines" viewBox="0 0 1160 620" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <filter id="neon-glow" x="-60%" y="-60%" width="220%" height="220%">
+                            <feGaussianBlur stdDeviation="3" result="blur1" />
+                            <feGaussianBlur stdDeviation="9" result="blur2" />
+                            <feMerge>
+                                <feMergeNode in="blur2" />
+                                <feMergeNode in="blur1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
 
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">01</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/3d_saas.png" alt="SaaS" class="stream-3d-icon">
+                    <!-- Core center: 580, 310 -->
+                    <!-- Card centers (Perfect Star R=250):
+                         01 (top-ctr):   580,  60
+                         02 (left-up):   364, 185
+                         03 (right-up):  796, 185
+                         04 (right-lo):  796, 435
+                         05 (left-lo):   364, 435
+                         06 (bot-ctr):   580, 560 -->
+
+                    <!-- Line 01 Top Center -->
+                    <path class="eco-line eco-line-1" d="M580,310 L580,60" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-1" cx="580" cy="60" r="4" filter="url(#neon-glow)"/>
+
+                    <!-- Line 02 Left Upper -->
+                    <path class="eco-line eco-line-2" d="M580,310 L364,185" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-2" cx="364" cy="185" r="4" filter="url(#neon-glow)"/>
+
+                    <!-- Line 03 Right Upper -->
+                    <path class="eco-line eco-line-3" d="M580,310 L796,185" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-3" cx="796" cy="185" r="4" filter="url(#neon-glow)"/>
+
+                    <!-- Line 04 Right Lower -->
+                    <path class="eco-line eco-line-4" d="M580,310 L796,435" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-4" cx="796" cy="435" r="4" filter="url(#neon-glow)"/>
+
+                    <!-- Line 05 Left Lower -->
+                    <path class="eco-line eco-line-5" d="M580,310 L364,435" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-5" cx="364" cy="435" r="4" filter="url(#neon-glow)"/>
+
+                    <!-- Line 06 Bottom Center -->
+                    <path class="eco-line eco-line-6" d="M580,310 L580,560" filter="url(#neon-glow)"/>
+                    <circle class="eco-node eco-node-6" cx="580" cy="560" r="4" filter="url(#neon-glow)"/>
+                </svg>
+
+                <!-- Center Core Hub -->
+                <div class="p-eco-center-core">
+                    <div class="core-layer layer-base"></div>
+                    <div class="core-layer layer-mid"></div>
+                    <div class="core-layer layer-top">
+                        <div class="core-cube">
+                            <div class="cube-face front">AI-MALL&trade;</div>
+                            <div class="cube-face back">AI-MALL&trade;</div>
+                            <div class="cube-face right">AI-MALL&trade;</div>
+                            <div class="cube-face left">AI-MALL&trade;</div>
+                            <div class="cube-face top">AI-MALL&trade;</div>
+                            <div class="cube-face bottom">AI-MALL&trade;</div>
                         </div>
-                        <h3 class="p-stream-title">SaaS Vendor Integration</h3>
-                        <p class="p-stream-desc">For established SaaS platforms looking to unify their modules within
-                            the A-Series™ stack and gain enterprise distribution.</p>
-                        <div class="p-stream-line"></div>
                     </div>
-
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">02</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/3d_ai_tools.png" alt="AI Tools" class="stream-3d-icon">
-                        </div>
-                        <h3 class="p-stream-title">AI Tool Providers</h3>
-                        <p class="p-stream-desc">LLM agents, image generators, and coding assistants seeking
-                            enterprise-grade distribution within a unified ecosystem.</p>
-                        <div class="p-stream-line"></div>
-                    </div>
-
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">03</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/3d_automation.png" alt="Automation" class="stream-3d-icon">
-                        </div>
-                        <h3 class="p-stream-title">Automation Agencies</h3>
-                        <p class="p-stream-desc">Specialized studios building custom workflows that benefit from
-                            standardized API deployment at scale.</p>
-                        <div class="p-stream-line"></div>
-                    </div>
-
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">04</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/3d_dev.png" alt="Developer" class="stream-3d-icon">
-                        </div>
-                        <h3 class="p-stream-title">Developer Ecosystems</h3>
-                        <p class="p-stream-desc">Open-source contributors and independent developers creating
-                            specialized AI components and extensions.</p>
-                        <div class="p-stream-line"></div>
-                    </div>
-
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">05</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/enterrr.png" alt="Enterprise" class="stream-3d-icon">
-                        </div>
-                        <h3 class="p-stream-title">Enterprise Solutions</h3>
-                        <p class="p-stream-desc">Consultancy and integration teams focused on large-scale AI digital
-                            transformations across industries.</p>
-                        <div class="p-stream-line"></div>
-                    </div>
-
-                    <div class="p-stream-item">
-                        <div class="p-stream-num">06</div>
-                        <div class="p-stream-icon-glow">
-                            <img src="logos/global.png" alt="Global MNC" class="stream-3d-icon">
-                        </div>
-                        <h3 class="p-stream-title">Global MNC Integrations</h3>
-                        <p class="p-stream-desc">For multinational corporations seeking proprietary white-label AI
-                            marketplace setups with full IP governance.</p>
-                        <div class="p-stream-line"></div>
-                    </div>
-
+                    <div class="core-glow-base"></div>
+                    <div class="core-particles"></div>
                 </div>
-            </div>
 
-            <!-- Progress indicator -->
-            <div class="p-streams-progress-wrap">
-                <div class="p-streams-progress-bar" id="p-streams-progress"></div>
+                <!-- Cards Container -->
+                <div class="p-eco-cards-container">
+                    
+                    <!-- Card 01: Top Center (was AI Tool Providers) -->
+                    <div class="p-stream-item eco-card-1" data-index="1">
+                        <div class="p-stream-num">01</div>
+                        <h3 class="p-stream-title">AI Tool Providers</h3>
+                        <p class="p-stream-desc">LLM agents, image generators, and coding assistants seeking enterprise-grade distribution within a unified ecosystem.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+
+                    <!-- Card 02: Left Middle (was SaaS Vendor Integration) -->
+                    <div class="p-stream-item eco-card-2" data-index="2">
+                        <div class="p-stream-num">02</div>
+                        <h3 class="p-stream-title">SaaS Vendor Integration</h3>
+                        <p class="p-stream-desc">For established SaaS platforms looking to unify their modules within the A-Series™ stack and gain enterprise distribution.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+
+                    <!-- Card 03: Right Middle (Automation Agencies) -->
+                    <div class="p-stream-item eco-card-3" data-index="3">
+                        <div class="p-stream-num">03</div>
+                        <h3 class="p-stream-title">Automation Agencies</h3>
+                        <p class="p-stream-desc">Specialized studios building custom workflows that benefit from standardized API deployment at scale.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+
+                    <!-- Card 04: Bottom Right (Developer Ecosystems) -->
+                    <div class="p-stream-item eco-card-4" data-index="4">
+                        <div class="p-stream-num">04</div>
+                        <h3 class="p-stream-title">Developer Ecosystems</h3>
+                        <p class="p-stream-desc">Open-source contributors and independent developers creating specialized AI components and extensions.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+
+                    <!-- Card 05: Bottom Left (Enterprise Solutions) -->
+                    <div class="p-stream-item eco-card-5" data-index="5">
+                        <div class="p-stream-num">05</div>
+                        <h3 class="p-stream-title">Enterprise Solutions</h3>
+                        <p class="p-stream-desc">Consultancy and integration teams focused on large-scale AI digital transformations across industries.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+
+                    <!-- Card 06: Bottom Center (Global MNC Integrations) -->
+                    <div class="p-stream-item eco-card-6" data-index="6">
+                        <div class="p-stream-num">06</div>
+                        <h3 class="p-stream-title">Global MNC Integrations</h3>
+                        <p class="p-stream-desc">For multinational corporations seeking proprietary white-label AI marketplace setups with full IP governance.</p>
+                        <div class="p-stream-line"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1015,21 +1059,48 @@
                 };
             });
 
-            // ── Streams Horizontal Scroll — Drag ──
-            const streamsOuter = document.getElementById('p-streams-outer');
-            const streamsProgress = document.getElementById('p-streams-progress');
-            if (streamsOuter) {
-                let isDown = false, startX, scrollLeft;
-                streamsOuter.addEventListener('mousedown', (e) => { isDown = true; streamsOuter.classList.add('is-dragging'); startX = e.pageX - streamsOuter.offsetLeft; scrollLeft = streamsOuter.scrollLeft; });
-                streamsOuter.addEventListener('mouseleave', () => { isDown = false; streamsOuter.classList.remove('is-dragging'); });
-                streamsOuter.addEventListener('mouseup', () => { isDown = false; streamsOuter.classList.remove('is-dragging'); });
-                streamsOuter.addEventListener('mousemove', (e) => {
-                    if (!isDown) return; e.preventDefault();
-                    streamsOuter.scrollLeft = scrollLeft - (e.pageX - streamsOuter.offsetLeft - startX) * 1.5;
-                });
-                streamsOuter.addEventListener('scroll', () => {
-                    const max = streamsOuter.scrollWidth - streamsOuter.clientWidth;
-                    if (streamsProgress) streamsProgress.style.width = (max > 0 ? (streamsOuter.scrollLeft / max) * 100 : 0) + '%';
+            // ── Ecosystem Hub — Entrance Animation ──
+            const ecoWrapper = document.getElementById('p-ecosystem-wrapper');
+            if (ecoWrapper) {
+                const ecoCore  = ecoWrapper.querySelector('.p-eco-center-core');
+                const ecoCards = ecoWrapper.querySelectorAll('.p-stream-item');
+                const ecoLines = ecoWrapper.querySelectorAll('.eco-line');
+                const ecoNodes = ecoWrapper.querySelectorAll('.eco-node');
+
+                const revealEco = (entries) => {
+                    if (!entries[0].isIntersecting) return;
+                    ecoObserver.disconnect();
+
+                    // 1) Core fades in
+                    if (ecoCore) {
+                        setTimeout(() => ecoCore.classList.add('eco-visible'), 100);
+                    }
+
+                    // 2) Lines draw outward
+                    ecoLines.forEach((line, i) => {
+                        setTimeout(() => line.classList.add('eco-visible'), 300 + i * 80);
+                    });
+                    ecoNodes.forEach((node, i) => {
+                        setTimeout(() => node.style.opacity = '1', 400 + i * 80);
+                    });
+
+                    // 3) Cards appear one by one
+                    ecoCards.forEach((card, i) => {
+                        setTimeout(() => card.classList.add('eco-visible'), 600 + i * 120);
+                    });
+                };
+
+                const ecoObserver = new IntersectionObserver(revealEco, { threshold: 0.2 });
+                ecoObserver.observe(ecoWrapper);
+
+                // Hover: pulse center core on card hover
+                ecoCards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        if (ecoCore) ecoCore.style.transform = 'translate(-50%, -50%) scale(1.06)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        if (ecoCore) ecoCore.style.transform = 'translate(-50%, -50%) scale(1)';
+                    });
                 });
             }
 
