@@ -927,70 +927,92 @@
                 typeItems.forEach(i => i.classList.remove('active'));
                 if (activeItem) activeItem.classList.add('active');
 
+                const isMobile = window.innerWidth <= 768;
+                
                 panels.forEach(p => {
                     if (p.classList.contains('active')) {
                         p.classList.remove('active');
-                        gsap.to(p, { opacity: 0, x: 20, duration: 0.25 });
+                        if (isMobile) {
+                            gsap.to(p, { opacity: 0, height: 0, duration: 0.3, onComplete: () => gsap.set(p, { clearProps: 'all' }) });
+                        } else {
+                            gsap.to(p, { opacity: 0, x: 20, duration: 0.25 });
+                        }
                     }
                 });
 
                 const target = document.querySelector(`.p-panel-content[data-panel="${type}"]`);
                 if (target) {
                     target.classList.add('active');
-                    gsap.fromTo(target, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', delay: 0.1 });
+                    if (isMobile) {
+                        gsap.fromTo(target, { opacity: 0, height: 0 }, { opacity: 1, height: 'auto', duration: 0.35, ease: 'power2.out' });
+                    } else {
+                        gsap.fromTo(target, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', delay: 0.1 });
+                    }
                 }
             };
 
-            // Pin the section and switch types based on scroll progress
-            const st = ScrollTrigger.create({
-                id: "partner-types-st",
-                trigger: "#partner-types",
-                start: "top 5%", 
-                end: "+=2200", 
-                pin: true,
-                scrub: 1,
-                onUpdate: (self) => {
-                    const prog = self.progress;
-                    const count = typeItems.length;
-                    const index = Math.min(Math.floor(prog * count), count - 1);
-                    const targetType = typeItems[index].dataset.type;
-                    
-                    // Progressive Item Reveal on Left Side
-                    typeItems.forEach((item, idx) => {
-                        if (idx <= index) {
-                            gsap.to(item, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
-                        } else {
-                            gsap.to(item, { opacity: 0.15, y: 10, duration: 0.4, ease: 'power2.out' });
-                        }
-                    });
+            // Responsive Interaction Logic using GSAP matchMedia
+            let mm = gsap.matchMedia();
 
-                    if (targetType !== currentActive) {
-                        switchType(targetType);
+            // DESKTOP: Pin section and scrub through types
+            mm.add("(min-width: 769px)", () => {
+                const st = ScrollTrigger.create({
+                    id: "partner-types-st",
+                    trigger: "#partner-types",
+                    start: "top 5%", 
+                    end: "+=2200", 
+                    pin: true,
+                    scrub: 1,
+                    onUpdate: (self) => {
+                        const prog = self.progress;
+                        const count = typeItems.length;
+                        const index = Math.min(Math.floor(prog * count), count - 1);
+                        const targetType = typeItems[index].dataset.type;
+                        
+                        // Progressive Item Reveal on Left Side
+                        typeItems.forEach((item, idx) => {
+                            if (idx <= index) {
+                                gsap.to(item, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+                            } else {
+                                gsap.to(item, { opacity: 0.15, y: 10, duration: 0.4, ease: 'power2.out' });
+                            }
+                        });
+
+                        if (targetType !== currentActive) {
+                            switchType(targetType);
+                        }
                     }
-                }
+                });
+
+                // Allow click to jump to scroll position
+                typeItems.forEach((item, index) => {
+                    // Create a named function so we can remove it later if needed, but since it's scoped it's fine
+                    item.onclick = () => {
+                        const scrollTarget = st.start + (index / typeItems.length) * (st.end - st.start) + 50;
+                        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+                    };
+                });
+
+                return () => {
+                    st.kill(); // Cleanup when switching to mobile
+                    typeItems.forEach(item => item.onclick = null);
+                };
             });
 
-            // Mobile Dropdown Toggle
-            const pNav = document.querySelector('.p-type-nav');
-            if (pNav) {
-                pNav.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) {
-                        pNav.classList.toggle('open');
-                    }
+            // MOBILE: Standard Tap/Accordion Interaction
+            mm.add("(max-width: 768px)", () => {
+                // Ensure all items are fully visible and not shifted
+                gsap.set(typeItems, { opacity: 1, y: 0 });
+                
+                typeItems.forEach((item) => {
+                    item.onclick = () => {
+                        switchType(item.dataset.type);
+                    };
                 });
-            }
 
-            // Allow click to jump to scroll position
-            typeItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    const scrollTarget = st.start + (index / typeItems.length) * (st.end - st.start) + 50;
-                    window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-                    
-                    // Close dropdown on mobile after selection
-                    if (window.innerWidth <= 768 && pNav) {
-                        pNav.classList.remove('open');
-                    }
-                });
+                return () => {
+                    typeItems.forEach(item => item.onclick = null);
+                };
             });
 
             // ── Streams Horizontal Scroll — Drag ──
