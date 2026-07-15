@@ -959,14 +959,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════════════════════════════════
     // 8. STICKY HEADER STATE
     // ═══════════════════════════════════════════
-    // const header = document.getElementById('header');
-    // if (header) {
-    //     ScrollTrigger.create({
-    //         start: 'top -80',
-    //         onEnter: () => header.classList.add('scrolled'),
-    //         onLeaveBack: () => header.classList.remove('scrolled'),
-    //     });
-    // }
+    const header = document.getElementById('header');
+    if (header) {
+        const checkScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll(); // Check on load
+    }
 
     // ═══════════════════════════════════════════
     // 9. PREMIUM CHATBOT LOGIC (AISA™)
