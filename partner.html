@@ -317,20 +317,48 @@
 
                 <!-- Center Core Hub -->
                 <div class="p-eco-center-core">
-                    <div class="core-layer layer-base"></div>
-                    <div class="core-layer layer-mid"></div>
-                    <div class="core-layer layer-top">
-                        <div class="core-cube">
-                            <div class="cube-face front">AI-MALL&trade;</div>
-                            <div class="cube-face back">AI-MALL&trade;</div>
-                            <div class="cube-face right">AI-MALL&trade;</div>
-                            <div class="cube-face left">AI-MALL&trade;</div>
-                            <div class="cube-face top">AI-MALL&trade;</div>
-                            <div class="cube-face bottom">AI-MALL&trade;</div>
+                    <div class="scene-3d">
+                        <!-- Stacked 3D platform layers -->
+                        <div class="platform-layer layer-base"></div>
+                        <div class="platform-layer layer-mid1"></div>
+                        <div class="platform-layer layer-mid2"></div>
+                        <div class="platform-layer layer-top"></div>
+                        
+                        <!-- Soft glow beneath the cube -->
+                        <div class="cube-shadow-glow"></div>
+                        
+                        <!-- Floating 3D Cube -->
+                        <div class="core-cube-wrapper">
+                            <!-- Rotating Cube -->
+                            <div class="core-cube">
+                                <div class="cube-face front"></div>
+                                <div class="cube-face back"></div>
+                                <div class="cube-face left"></div>
+                                <div class="cube-face right"></div>
+                                <div class="cube-face top"></div>
+                                <div class="cube-face bottom"></div>
+                            </div>
+                            
+                            <!-- Static Hologram inside (floats but does not rotate) -->
+                            <div class="cube-hologram">
+                                <div class="holo-content">
+                                    <span class="holo-logo-text">AIMall</span>
+                                </div>
+                            </div>
+                            <div class="cube-inner-glow"></div>
+                        </div>
+                        
+                        <!-- Glowing base / ambient light -->
+                        <div class="platform-glow"></div>
+                        
+                        <!-- Floating particles sparks -->
+                        <div class="core-particles">
+                            <div class="particle p1"></div>
+                            <div class="particle p2"></div>
+                            <div class="particle p3"></div>
+                            <div class="particle p4"></div>
                         </div>
                     </div>
-                    <div class="core-glow-base"></div>
-                    <div class="core-particles"></div>
                 </div>
 
                 <!-- Cards Container -->

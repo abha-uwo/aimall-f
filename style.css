@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     /* Color Palette - Premium Royal Blue AI Aesthetics */
     --clr-bg: #fdfeff;
     --clr-white: #ffffff;
@@ -14162,139 +14162,259 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 240px;
-    height: 320px; /* Taller */
+    height: 240px;
     z-index: 4;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    transition: transform 0.4s ease;
+    justify-content: center;
+    transition: opacity 0.6s ease;
 }
 .p-eco-center-core.eco-visible { opacity: 1 !important; }
 
-.core-layer { position: absolute; border-radius: 12px; }
-
-/* Enhanced glowing layers */
-.layer-base {
-    width: 190px; height: 50px;
-    bottom: 0; left: 50%;
-    transform: translateX(-50%) perspective(260px) rotateX(65deg);
-    background: linear-gradient(135deg,#071444,#1230a0,#2a52d8);
-    box-shadow: 0 10px 40px rgba(34,72,192,0.9), 0 0 80px rgba(34,72,192,0.6),
-                inset 0 4px 10px rgba(120,160,255,0.4);
-    border: 1px solid rgba(80,130,255,0.8);
-}
-.layer-mid {
-    width: 155px; height: 45px;
-    bottom: 30px; left: 50%;
-    transform: translateX(-50%) perspective(260px) rotateX(65deg);
-    background: linear-gradient(135deg,#1230a0,#2a52d8,#4270f0);
-    box-shadow: 0 0 35px rgba(80,120,248,0.85),
-                inset 0 3px 8px rgba(150,185,255,0.5);
-    border: 1px solid rgba(100,150,255,0.7);
-}
-.layer-top {
-    width: 120px; height: 40px;
-    bottom: 60px; left: 50%;
-    transform: translateX(-50%) perspective(260px) rotateX(65deg);
-    background: linear-gradient(135deg,#163ab0,#3060e0,#5898ff);
-    box-shadow: 0 -5px 25px rgba(110,155,255,0.9),
-                inset 0 2px 5px rgba(190,215,255,0.6);
-    border: 1px solid rgba(140,200,255,0.8);
-}
-
-/* True 3D Holographic Cube (Rectangular Prism) */
-.core-cube {
-    width: 72px; height: 108px;
-    position: absolute;
-    bottom: 135px; left: 50%;
-    transform: translateX(-50%);
+/* ── 3D Scene setup ────────────────────────────────────────────── */
+.scene-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
     transform-style: preserve-3d;
-    animation: cubeRotate 10s linear infinite;
+    perspective: 1200px;
+    transform: rotateX(60deg) rotateZ(-45deg);
+    transition: transform 0.4s ease;
 }
-@keyframes cubeRotate {
-    0%   { transform: translateX(-50%) rotateX(15deg) rotateY(0deg);   }
-    100% { transform: translateX(-50%) rotateX(15deg) rotateY(360deg); }
+
+/* ── Stacked 3D platform layers ─────────────────────────────────── */
+.platform-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    background: linear-gradient(135deg, rgba(8, 28, 96, 0.45), rgba(24, 76, 210, 0.25));
+    border: 2px solid rgba(0, 255, 255, 0.8);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4),
+        inset 0 0 15px rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.3s ease;
+}
+
+/* Base side wall simulation */
+.platform-layer::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(180deg, rgba(0, 255, 255, 0.3), rgba(6, 18, 64, 0.95));
+    transform: translateZ(-8px);
+    border: 2px solid rgba(0, 255, 255, 0.45);
+    pointer-events: none;
+}
+
+.layer-base {
+    width: 160px;
+    height: 160px;
+    transform: translate3d(-50%, -50%, 0px);
+}
+
+.layer-mid1 {
+    width: 135px;
+    height: 135px;
+    transform: translate3d(-50%, -50%, 12px);
+}
+
+.layer-mid2 {
+    width: 110px;
+    height: 110px;
+    transform: translate3d(-50%, -50%, 24px);
+}
+
+.layer-top {
+    width: 85px;
+    height: 85px;
+    transform: translate3d(-50%, -50%, 36px);
+}
+
+/* ── Floating 3D Cube ──────────────────────────────────────────── */
+.core-cube-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 72px;
+    height: 72px;
+    transform-style: preserve-3d;
+    animation: floatOnly 6s ease-in-out infinite;
+}
+
+.core-cube {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    transform-style: preserve-3d;
+    animation: rotateOnly 14s linear infinite;
 }
 
 .cube-face {
     position: absolute;
-    top: 50%; left: 50%;
-    border: 1.5px solid rgba(0,255,255,0.85);
-    background: rgba(12,45,180,0.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    width: 72px;
+    height: 72px;
+    background: rgba(12, 45, 180, 0.08);
+    border: 1.5px solid rgba(0, 255, 255, 0.65);
+    box-shadow: 
+        inset 0 0 10px rgba(0, 255, 255, 0.2),
+        0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+/* Precise positioning of cube faces */
+.cube-face.front  { transform: rotateY(  0deg) translateZ(36px); }
+.cube-face.back   { transform: rotateY(180deg) translateZ(36px); }
+.cube-face.left   { transform: rotateY(-90deg) translateZ(36px); }
+.cube-face.right  { transform: rotateY( 90deg) translateZ(36px); }
+.cube-face.top    { transform: rotateX( 90deg) translateZ(36px); }
+.cube-face.bottom { transform: rotateX(-90deg) translateZ(36px); }
+
+/* Static Hologram Inside (Counter-rotated to face the viewer directly) */
+.cube-hologram {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 24px;
+    transform: translate3d(-50%, -50%, 0) rotateZ(45deg) rotateX(-60deg);
+    transform-style: preserve-3d;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.holo-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.65rem;
+    width: 60px;
+    height: 24px;
+    background: rgba(0, 255, 255, 0.15);
+    border: 1.2px solid rgba(0, 255, 255, 0.85);
+    border-radius: 4px;
+    box-shadow: 
+        0 0 12px rgba(0, 255, 255, 0.5),
+        inset 0 0 6px rgba(0, 255, 255, 0.3);
+}
+
+.holo-logo-text {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 0.75rem;
     font-weight: 800;
-    color: rgba(0,255,255,1);
-    text-shadow: 0 0 8px #00ffff, 0 0 20px rgba(0,212,255,0.8),
-                 0 0 40px rgba(0,180,255,0.5);
-    letter-spacing: 0.03em;
-    box-shadow: 0 0 20px rgba(0,255,255,0.4),
-                inset 0 0 15px rgba(0,255,255,0.25);
-    line-height: 1.1;
-    text-align: center;
+    color: #ffffff;
+    text-shadow: 
+        0 0 6px rgba(0, 255, 255, 0.95),
+        0 0 12px rgba(0, 255, 255, 0.5);
+    line-height: 1;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
 }
 
-/* Position faces precisely for a 72x72x108 prism */
-.cube-face.front {
-    width: 72px; height: 108px;
-    transform: translate(-50%, -50%) translateZ(36px);
-}
-.cube-face.back {
-    width: 72px; height: 108px;
-    transform: translate(-50%, -50%) translateZ(-36px) rotateY(180deg);
-}
-.cube-face.right {
-    width: 72px; height: 108px;
-    transform: translate(-50%, -50%) translateX(36px) rotateY(90deg);
-}
-.cube-face.left {
-    width: 72px; height: 108px;
-    transform: translate(-50%, -50%) translateX(-36px) rotateY(-90deg);
-}
-.cube-face.top {
-    width: 72px; height: 72px;
-    transform: translate(-50%, -50%) translateY(-54px) rotateX(90deg);
-}
-.cube-face.bottom {
-    width: 72px; height: 72px;
-    transform: translate(-50%, -50%) translateY(54px) rotateX(-90deg);
-}
-
-.core-glow-base {
+/* Inner glow core */
+.cube-inner-glow {
     position: absolute;
-    bottom: -15px; left: 50%;
-    transform: translateX(-50%);
-    width: 260px; height: 75px;
-    background: radial-gradient(ellipse, rgba(0,215,255,0.4) 0%, transparent 70%);
-    filter: blur(24px);
-    animation: glowPulse 3s ease-in-out infinite alternate;
-    z-index: -1;
-}
-@keyframes glowPulse {
-    from { opacity:0.5; transform:translateX(-50%) scale(0.86); }
-    to   { opacity:1;   transform:translateX(-50%) scale(1.14); }
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.75) 0%, transparent 70%);
+    filter: blur(6px);
+    animation: innerGlowPulse 2.5s ease-in-out infinite alternate;
+    pointer-events: none;
 }
 
-.core-particles { position:absolute; inset:-80px; pointer-events:none; }
-.core-particles::before,.core-particles::after {
-    content:'';
-    position:absolute;
-    width:5px; height:5px;
-    border-radius:50%;
-    background:#00ffff;
-    box-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0,255,255,0.6);
+@keyframes innerGlowPulse {
+    from { transform: translate3d(-50%, -50%, 0) scale(0.85); opacity: 0.55; }
+    to   { transform: translate3d(-50%, -50%, 0) scale(1.15); opacity: 0.85; }
 }
-.core-particles::before { top:16%; left:7%;  animation:floatParticle 4s ease-in-out infinite; }
-.core-particles::after  { bottom:16%; right:7%; animation:floatParticle 5.5s ease-in-out infinite reverse; }
-@keyframes floatParticle {
-    0%,100% { transform:translateY(0)    translateX(0);   opacity:.4; }
-    25%     { transform:translateY(-13px) translateX(7px); opacity:1;  }
-    75%     { transform:translateY(9px)  translateX(-7px); opacity:.7; }
+
+/* ── Glows & shadow effects ────────────────────────────────────── */
+.platform-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, -15px);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.35) 0%, transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+.cube-shadow-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 42px);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.5) 0%, transparent 70%);
+    filter: blur(8px);
+    pointer-events: none;
+    animation: shadowPulse 8s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+    0%, 100% { transform: translate3d(-50%, -50%, 42px) scale(0.9); opacity: 0.45; }
+    50%      { transform: translate3d(-50%, -50%, 42px) scale(1.15); opacity: 0.75; }
+}
+
+/* ── Floating Animation ─────────────────────────────────────────── */
+@keyframes floatOnly {
+    0%, 100% { transform: translate3d(-50%, -50%, 65px); }
+    50%      { transform: translate3d(-50%, -50%, 75px); }
+}
+
+@keyframes rotateOnly {
+    0%   { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+}
+
+/* ── Dynamic Sparks / Particles ─────────────────────────────────── */
+.core-particles {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 55px);
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ffff;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 8px #00ffff,
+        0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+.particle.p1 { animation: particleFloat1 5s ease-in-out infinite; }
+.particle.p2 { animation: particleFloat2 7s ease-in-out infinite; }
+.particle.p3 { animation: particleFloat3 6s ease-in-out infinite; }
+.particle.p4 { animation: particleFloat4 8s ease-in-out infinite; }
+
+@keyframes particleFloat1 {
+    0%, 100% { transform: translate3d(-25px, -35px, 15px); opacity: 0.25; }
+    50%      { transform: translate3d(35px, 25px, 45px); opacity: 0.95; }
+}
+@keyframes particleFloat2 {
+    0%, 100% { transform: translate3d(40px, -10px, 30px); opacity: 0.85; }
+    50%      { transform: translate3d(-35px, 35px, -5px); opacity: 0.15; }
+}
+@keyframes particleFloat3 {
+    0%, 100% { transform: translate3d(-35px, 40px, 35px); opacity: 0.35; }
+    50%      { transform: translate3d(25px, -40px, 5px); opacity: 0.9; }
+}
+@keyframes particleFloat4 {
+    0%, 100% { transform: translate3d(10px, 25px, -10px); opacity: 0.9; }
+    50%      { transform: translate3d(-20px, -25px, 50px); opacity: 0.3; }
 }
 
 /* ── Cards container ─────────────────────────────────────────── */
@@ -14404,6 +14524,9 @@ body {
 /* ── Tablet ──────────────────────────────────────────────────── */
 @media (max-width:1160px) and (min-width:769px) {
     .p-ecosystem-wrapper { max-width:900px; height:540px; }
+    .scene-3d {
+        transform: rotateX(60deg) rotateZ(-45deg) scale(0.8);
+    }
     
     .eco-card-1 { top: calc(50% - 210px); }
     .eco-card-6 { top: calc(50% + 210px); }
@@ -14427,7 +14550,10 @@ body {
     .p-eco-center-core {
         position:relative; left:auto; top:auto;
         transform:none; margin:14px auto 18px;
-        width:155px; height:200px;
+        width:240px; height:240px;
+    }
+    .scene-3d {
+        transform: rotateX(60deg) rotateZ(-45deg) scale(0.65);
     }
     .p-eco-cards-container {
         position:relative; inset:auto;
